@@ -52,9 +52,9 @@ class GradeCategoryController extends Controller
     // SUM: edit the category
     public function getGradeCategoryEdit($id): JsonResponse
     {
+        $category=GradeCategory::where('category_id','=','$id')->first();
         return response()->json([
-            'category_id' => $id,
-            'category_name' => $category_name,
+            'category' => $category,
         ], JsonResponse::HTTP_OK);
     }
 
@@ -63,7 +63,7 @@ class GradeCategoryController extends Controller
     public function patchUpdate(Request $request, $id): JsonResponse
     {
         return response()->json([
-            '' => null,
+            '' ,
         ], JsonResponse::HTTP_ACCEPTED);
     }
 

@@ -27,8 +27,19 @@ Route::get('/subcategory', [GradeSubCategoryController::class, 'getGradeSubCateg
 Route::get('/subcategory/show',[GradeSubCategoryController::class,'getGradeSubCategoryShow']);
 Route::delete('/subcategory/delete',[GradeSubCategoryController::class,'deleteGradeSubCategory']);
 Route::get('/subcategory/edit',[GradeSubCategoryController::class,'getGradeSubCategoryEdit']);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 Route::get('category', [GradeCategoryController::class, 'getGradeCategoryShow']);
 
 Route::delete('/category', [GradeCategoryController::class, 'deleteGradeCategory']);
 
+Route::get('/category/edit',[GradeCategoryController::class,'getGradeCategoryEdit']);
+
+
 Route::post('/Subcategory', [GradeSubCategoryController::class, 'postSubCategoryStore']);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
