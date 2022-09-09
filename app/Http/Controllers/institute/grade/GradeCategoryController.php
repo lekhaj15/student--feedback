@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class GradeCategoryController extends Controller
 {
-    // URI: /
-    // SUM:
+    // URI: /http://127.0.0.1:8000/api/institute/category
+    // SUM: get all the category details
     public function getGradeCategoryIndex(Request $request): JsonResponse
     {
         $category=GradeCategory::toBase()
@@ -22,7 +22,7 @@ class GradeCategoryController extends Controller
     }
 
     // URI: /api/institute/category
-    // SUM:
+    // SUM: store the category
     public function postGradeCategoryStore(Request $request): JsonResponse
     {
         $request->validate([
@@ -38,25 +38,27 @@ class GradeCategoryController extends Controller
         ], JsonResponse::HTTP_CREATED);
     }
 
-    // URI: /
-    // SUM:
-    public function getShow($id): JsonResponse
+    // URI: /http://127.0.0.1:8000/api/institute/category
+    // SUM: displays the category
+    public function getGradeCategoryShow($id,$category_name): JsonResponse
     {
         return response()->json([
-            '' => null,
+            'category_id' => $id,
+            'category_name' => $category_name,
         ], JsonResponse::HTTP_OK);
     }
 
     // URI: /
-    // SUM:
-    public function getEdit($id): JsonResponse
+    // SUM: edit the category
+    public function getGradeCategoryEdit($id): JsonResponse
     {
         return response()->json([
-            '' => null,
+            'category_id' => $id,
+            'category_name' => $category_name,
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /
+    // URI: /http://127.0.0.1:8000/api/institute/category
     // SUM:
     public function patchUpdate(Request $request, $id): JsonResponse
     {
@@ -66,11 +68,12 @@ class GradeCategoryController extends Controller
     }
 
     // URI: /
-    // SUM:
-    public function deleteDestroy($id): JsonResponse
+    // SUM: deletes the category data
+    public function deleteGradeCategory($id): JsonResponse
     {
+        $category=GradeCategory::where('category_id','=','$id')->delete();
         return response()->json([
-            '' => null,
+            'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
     }
 }
