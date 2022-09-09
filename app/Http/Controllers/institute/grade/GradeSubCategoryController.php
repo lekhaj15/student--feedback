@@ -3,22 +3,27 @@
 namespace App\Http\Controllers\institute\grade;
 
 use App\Http\Controllers\Controller;
+use App\Models\institute\grade\GradeCategory;
 use App\Models\institute\grade\GradeSubCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class GradeSubCategoryController extends Controller
 {
-    // URI: /
-    // SUM:
-    public function getIndex(Request $request): JsonResponse
+    // URI: /api/institute/subcategory
+    // SUM: get all the subcategory details
+    public function getGradeSubCategoryIndex(Request $request): JsonResponse
     {
+        $subcategory=GradeSubCategory::toBase()
+            ->get();
+
+
         return response()->json([
-            '' => null,
+            'subcategory' => $subcategory,
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /
+    // URI: /api/institute/subcategory
     // SUM:
     public function postSubCategoryStore(Request $request): JsonResponse
     {
@@ -37,39 +42,46 @@ class GradeSubCategoryController extends Controller
         ], JsonResponse::HTTP_CREATED);
     }
 
-    // URI: /
-    // SUM:
-    public function getShow($id): JsonResponse
+    // URI: /api/institute/subcategory/show
+    // SUM:display the values
+    public function getGradeSubCategoryShow($id,$category_id,$subcategory_name): JsonResponse
     {
         return response()->json([
-            '' => null,
+            'category_id' => $category_id,
+            'subcategory_name'=>$subcategory_name,
+            'subcategory_id'=>$id,
+
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /
-    // SUM:
-    public function getEdit($id): JsonResponse
+    // URI: /api/institute/subcategory/edit
+    // SUM:edit subcategory information
+    public function getGradeSubCategoryEdit($id): JsonResponse
     {
+        $subcategory= GradeSubCategory::where(['subcategory_id','=',$id])
+        ->first();
         return response()->json([
-            '' => null,
+            'subcategory' => $subcategory,
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /
+    // URI: /api/institute/subcategory
     // SUM:
     public function patchUpdate(Request $request, $id): JsonResponse
     {
         return response()->json([
-            '' => null,
+            'subcategory' => $subcategory,
         ], JsonResponse::HTTP_ACCEPTED);
     }
 
-    // URI: /
-    // SUM:
-    public function deleteDestroy($id): JsonResponse
+    // URI: /api/institute/subcategory
+    // SUM: delete subcategory data
+    public function deleteGradeSubCategory($id): JsonResponse
     {
+        $subcategory= GradeSubCategory::where('subcategory_id','=',$id)->delete();
         return response()->json([
-            '' => null,
+
+            'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
     }
 }

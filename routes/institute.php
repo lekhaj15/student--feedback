@@ -22,3 +22,7 @@ Route::post('/category', [GradeCategoryController::class, 'postGradeCategoryStor
 Route::get('/category', [GradeCategoryController::class, 'getGradeCategoryIndex']);
 
 Route::post('/subcategory', [GradeSubCategoryController::class, 'postSubCategoryStore']);
+Route::get('/subcategory', [GradeSubCategoryController::class, 'getGradeSubCategoryIndex']);
+Route::get('/subcategory/show',[GradeSubCategoryController::class,'getGradeSubCategoryShow']);
+Route::delete('/subcategory/delete',[GradeSubCategoryController::class,'deleteGradeSubCategory']);
+Route::get('/subcategory/edit',[GradeSubCategoryController::class,'getGradeSubCategoryEdit']);
