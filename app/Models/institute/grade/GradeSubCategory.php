@@ -1,19 +1,19 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Models\institute\grade;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class {{ class }} extends Model
+class GradeSubCategory extends Model
 {
     use HasFactory;
 
 //    protected $table = '';
 
     protected $fillable = [
-        'id',
+        'id','category_id','subcategory_name'
     ];
 
     protected $hidden = [

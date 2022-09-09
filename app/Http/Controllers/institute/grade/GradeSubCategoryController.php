@@ -1,12 +1,13 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Controllers\institute\grade;
 
-use {{ rootNamespace }}Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\institute\grade\GradeSubCategory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class {{ class }} extends Controller
+class GradeSubCategoryController extends Controller
 {
     // URI: /
     // SUM:
@@ -19,10 +20,20 @@ class {{ class }} extends Controller
 
     // URI: /
     // SUM:
-    public function postStore(Request $request): JsonResponse
+    public function postSubCategoryStore(Request $request): JsonResponse
     {
+        $request->validate([
+            'subcategory_name' => 'required|string|max:45',
+        ]);
+        $category_id = $request->input('category_id');
+        $subcategory_name = $request->input('subcategory_name');
+
+        $grade_category =GradeSubCategory::create([
+            'category_id' => $category_id,
+            'subcategory_name' => $subcategory_name,
+        ]);
         return response()->json([
-            '' => null,
+            'grade_category' => $grade_category,
         ], JsonResponse::HTTP_CREATED);
     }
 

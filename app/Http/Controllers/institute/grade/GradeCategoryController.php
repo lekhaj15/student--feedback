@@ -1,28 +1,40 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Controllers\institute\grade;
 
-use {{ rootNamespace }}Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\institute\grade\GradeCategory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class {{ class }} extends Controller
+class GradeCategoryController extends Controller
 {
     // URI: /
     // SUM:
-    public function getIndex(Request $request): JsonResponse
+    public function getGradeCategoryIndex(Request $request): JsonResponse
     {
+        $category=GradeCategory::toBase()
+            ->get();
+
         return response()->json([
-            '' => null,
+            'category' => $category,
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /
+    // URI: /api/institute/category
     // SUM:
-    public function postStore(Request $request): JsonResponse
+    public function postGradeCategoryStore(Request $request): JsonResponse
     {
+        $request->validate([
+            'category_name' => 'required|string|max:45',
+        ]);
+        $category_name = $request->input('category_name');
+
+        $grade_category =GradeCategory::create([
+            'category_name' => $category_name,
+        ]);
         return response()->json([
-            '' => null,
+            'grade_category' => $grade_category,
         ], JsonResponse::HTTP_CREATED);
     }
 
