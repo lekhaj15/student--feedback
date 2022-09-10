@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class GradeCategoryController extends Controller
 {
-    // URI: /http://127.0.0.1:8000/api/institute/category
+    // URI: /api/institute/category
     // SUM: get all the category details
     public function getGradeCategoryIndex(Request $request): JsonResponse
     {

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class GradeSubCategoryController extends Controller
 {
-    // URI: /api/institute/subcategory
+    // URI: /api/institute/subcategory/index
     // SUM: get all the subcategory details
     public function getGradeSubCategoryIndex(Request $request): JsonResponse
     {
@@ -23,7 +23,7 @@ class GradeSubCategoryController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /api/institute/subcategory
+    // URI: /api/institute/subcategory/store
     // SUM:
     public function postSubCategoryStore(Request $request): JsonResponse
     {
@@ -55,11 +55,13 @@ class GradeSubCategoryController extends Controller
     }
 
     // URI: /api/institute/subcategory/edit
-    // SUM:edit subcategory information
+    // SUM:edit data
     public function getGradeSubCategoryEdit($id): JsonResponse
     {
         $subcategory= GradeSubCategory::where(['subcategory_id','=',$id])
         ->first();
+        $subcategory=GradeSubCategory::where(['subcategory_name','=',$subcategory['subcategory_name']])
+            ->first();
         return response()->json([
             'subcategory' => $subcategory,
         ], JsonResponse::HTTP_OK);
@@ -67,14 +69,19 @@ class GradeSubCategoryController extends Controller
 
     // URI: /api/institute/subcategory
     // SUM:
-    public function patchUpdate(Request $request, $id): JsonResponse
+    public function patchGradeSubCategoryUpdate(Request $request, $id): JsonResponse
     {
+        $id=$request->input('id');
+        $category_id=$request->input('category_id');
+        $subcategory_name=$request->input('name');
+
+        GradeSubCategory::where(['id','=','$id'])->update($id,$category_id,$subcategory_name);
         return response()->json([
-            'subcategory' => $subcategory,
+            'success' => 'update success'
         ], JsonResponse::HTTP_ACCEPTED);
     }
 
-    // URI: /api/institute/subcategory
+    // URI: /api/institute/subcategory/delete
     // SUM: delete subcategory data
     public function deleteGradeSubCategory($id): JsonResponse
     {

@@ -18,28 +18,25 @@ use Illuminate\Support\Facades\Route;
 // api/institute
 
 Route::post('/category', [GradeCategoryController::class, 'postGradeCategoryStore']);
-
 Route::get('/category', [GradeCategoryController::class, 'getGradeCategoryIndex']);
-
-
-Route::post('/subcategory', [GradeSubCategoryController::class, 'postSubCategoryStore']);
-Route::get('/subcategory', [GradeSubCategoryController::class, 'getGradeSubCategoryIndex']);
-Route::get('/subcategory/show',[GradeSubCategoryController::class,'getGradeSubCategoryShow']);
-Route::delete('/subcategory/delete',[GradeSubCategoryController::class,'deleteGradeSubCategory']);
-Route::get('/subcategory/edit',[GradeSubCategoryController::class,'getGradeSubCategoryEdit']);
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 Route::get('category', [GradeCategoryController::class, 'getGradeCategoryShow']);
-
 Route::delete('/category', [GradeCategoryController::class, 'deleteGradeCategory']);
-
+Route::get('/category/edit',[GradeCategoryController::class,'getGradeCategoryEdit']);
 Route::get('/category/edit',[GradeCategoryController::class,'getGradeCategoryEdit']);
 
 
-Route::post('/Subcategory', [GradeSubCategoryController::class, 'postSubCategoryStore']);
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+Route::post('/subcategory/store', [GradeSubCategoryController::class, 'postSubCategoryStore']);
+Route::get('/subcategory/index', [GradeSubCategoryController::class, 'getGradeSubCategoryIndex']);
+Route::get('/subcategory/show',[GradeSubCategoryController::class,'getGradeSubCategoryShow']);
+Route::delete('/subcategory/delete',[GradeSubCategoryController::class,'deleteGradeSubCategory']);
+Route::get('/subcategory/edit',[GradeSubCategoryController::class,'getGradeSubCategoryEdit']);
+Route::patch('/subcategory/update',[GradeSubCategoryController::class,'patchGradeSubCategoryUpdate']);
+
+
+Route::get('/student/index',[\App\Http\Controllers\institute\grade\StudentInformationController::class,'getStudentInformationIndex']);
+Route::get('/student/information/show',[\App\Http\Controllers\institute\grade\StudentInformationController::class,'getStudentInformationShow']);
+Route::delete('/student/delete',[\App\Http\Controllers\institute\grade\StudentInformationController::class,'deleteStudentInformation']);
+Route::post('/student/store',[\App\Http\Controllers\institute\grade\StudentInformationController::class,'postStudentInformationStore']);
+Route::patch('/student/update',[\App\Http\Controllers\institute\grade\StudentInformationController::class,'patchStudentInformationUpdate']);
+Route::get('/student/edit',[\App\Http\Controllers\institute\grade\StudentInformationController::class,'getStudentInformationEdit']);
