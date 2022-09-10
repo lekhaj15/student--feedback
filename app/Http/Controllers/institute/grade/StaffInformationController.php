@@ -3,42 +3,72 @@
 namespace App\Http\Controllers\institute\grade;
 
 use App\Http\Controllers\Controller;
+use App\Models\institute\staff\StaffInformation;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class StaffInformationController extends Controller
 {
     // URI: /
-    // SUM:
-    public function getIndex(Request $request): JsonResponse
+    // SUM: get all staff details
+    public function getStaffInformationIndex(Request $request): JsonResponse
     {
+        $staff=StaffInformation::toBase()->get();
         return response()->json([
-            '' => null,
+            'satff' => $staff,
         ], JsonResponse::HTTP_OK);
     }
 
     // URI: /
-    // SUM:
-    public function postStore(Request $request): JsonResponse
+    // SUM: store the staff info
+    public function postStaffInformationStore(Request $request): JsonResponse
     {
+        $request->validate([
+            'staff_name' => 'required|string|max:45',
+        ]);
+
+
+        $staff_id = $request->input('staff_id');
+        $staff_name = $request->input('staff_name');
+        $staff_email = $request->input('staff_email');
+        $staff_phone = $request->input('staff_phone');
+        $staff_dob = $request->input('staff_dob');
+        $staff_password = $request->input('staff_password');
+        $staff_category_id = $request->input('staff_category_id');
+
+        $staff_information =StaffInformation::create([
+            'staff_id' => $staff_id,
+            'staff_name' => $staff_name,
+            'staff_email' => $staff_email,
+            'staff_phone' => $staff_phone,
+            'staff_dob' => $staff_dob,
+            'staff_password' => $staff_password,
+        'staff_category_id'=> $staff_category_id,
         return response()->json([
-            '' => null,
+            'staff_information' => $staff_information,
         ], JsonResponse::HTTP_CREATED);
     }
 
     // URI: /
-    // SUM:
-    public function getShow($id): JsonResponse
+    // SUM: displays the staff data
+    public function getStaffInformationShow($id,$staff_id,$staff_name,$staff_email,$staff_phone,$staff_dob,$staff_password): JsonResponse
     {
         return response()->json([
-            '' => null,
+            'id' => $id,
+            'staff_id' => $staff_id,
+            'staff_name' => $staff_name,
+            'staff_email' => $staff_email,
+            'staff_phone' => $staff_phone,
+            'staff_dob' => $staff_dob,
+            'staff_password' => $staff_password,
         ], JsonResponse::HTTP_OK);
     }
 
     // URI: /
-    // SUM:
-    public function getEdit($id): JsonResponse
+    // SUM: edits the staff info
+    public function getStaffInformationEdit($id): JsonResponse
     {
+        $staff=StaffInformation::where('staff_id','=','$id')->first();
         return response()->json([
             '' => null,
         ], JsonResponse::HTTP_OK);
@@ -54,11 +84,12 @@ class StaffInformationController extends Controller
     }
 
     // URI: /
-    // SUM:
-    public function deleteDestroy($id): JsonResponse
+    // SUM: deletes the staff data
+    public function deleteStaffInformation($id): JsonResponse
     {
+        $staff=StaffInformation::where('staff_id','=','$id')->delete();
         return response()->json([
-            '' => null,
+            'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
     }
 }
