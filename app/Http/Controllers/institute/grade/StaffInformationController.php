@@ -43,7 +43,7 @@ class StaffInformationController extends Controller
             'staff_phone' => $staff_phone,
             'staff_dob' => $staff_dob,
             'staff_password' => $staff_password,
-        'staff_category_id'=> $staff_category_id,
+        'staff_category_id'=> $staff_category_id,]);
         return response()->json([
             'staff_information' => $staff_information,
         ], JsonResponse::HTTP_CREATED);

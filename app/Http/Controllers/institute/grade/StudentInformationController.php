@@ -114,7 +114,7 @@ class StudentInformationController extends Controller
 
     // URI: /api/student/delete
     // SUM:delete student data
-    public function deleteStudentInformation($id): JsonResponse
+    public function deleteStudentInformation(Request $request,int $id): JsonResponse
     {
         $student= StudentInformation::where('student_id','=',$id)->delete();
         return response()->json([

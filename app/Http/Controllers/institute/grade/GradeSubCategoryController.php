@@ -44,12 +44,14 @@ class GradeSubCategoryController extends Controller
 
     // URI: /api/institute/subcategory/show
     // SUM:display the values
-    public function getGradeSubCategoryShow($id,$category_id,$subcategory_name): JsonResponse
+    public function getGradeSubCategoryShow( Request $request,int $id): JsonResponse
     {
+        $subcategory=GradeSubCategory::where('id','=',$id)
+            ->first();
+
         return response()->json([
-            'category_id' => $category_id,
-            'subcategory_name'=>$subcategory_name,
-            'subcategory_id'=>$id,
+
+            'subcategory'=>$subcategory,
 
         ], JsonResponse::HTTP_OK);
     }
@@ -60,22 +62,26 @@ class GradeSubCategoryController extends Controller
     {
         $subcategory= GradeSubCategory::where(['subcategory_id','=',$id])
         ->first();
-        $subcategory=GradeSubCategory::where(['subcategory_name','=',$subcategory['subcategory_name']])
+        $subcategoryname=GradeSubCategory::where(['subcategory_name','=',$subcategory['subcategory_name']])
             ->first();
         return response()->json([
             'subcategory' => $subcategory,
+            'subcategoryname'=>$subcategoryname
         ], JsonResponse::HTTP_OK);
     }
 
     // URI: /api/institute/subcategory
     // SUM:
-    public function patchGradeSubCategoryUpdate(Request $request, $id): JsonResponse
+    public function patchGradeSubCategoryUpdate(Request $request,int $id): JsonResponse
     {
         $id=$request->input('id');
         $category_id=$request->input('category_id');
         $subcategory_name=$request->input('name');
 
-        GradeSubCategory::where(['id','=','$id'])->update($id,$category_id,$subcategory_name);
+        GradeSubCategory::toBase()
+        ->where('id','=','$id')
+            ->update($category_id,$subcategory_name);
+
         return response()->json([
             'success' => 'update success'
         ], JsonResponse::HTTP_ACCEPTED);
@@ -83,11 +89,14 @@ class GradeSubCategoryController extends Controller
 
     // URI: /api/institute/subcategory/delete
     // SUM: delete subcategory data
-    public function deleteGradeSubCategory($id): JsonResponse
+    public function deleteGradeSubCategory(Request $request,int $id): JsonResponse
     {
-        $subcategory= GradeSubCategory::where('subcategory_id','=',$id)->delete();
-        return response()->json([
 
+        $subcategory= GradeSubCategory::where('id', '=', $id)
+
+            ->delete();
+//        dd($id);
+        return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
     }
