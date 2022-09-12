@@ -70,7 +70,7 @@ class StaffInformationController extends Controller
     {
         $staff=StaffInformation::where('staff_id','=','$id')->first();
         return response()->json([
-            '' => null,
+            'staffinformation' => $staffinformation,
         ], JsonResponse::HTTP_OK);
     }
 
@@ -79,7 +79,7 @@ class StaffInformationController extends Controller
     public function patchUpdate(Request $request, $id): JsonResponse
     {
         return response()->json([
-            '' => null,
+            '' => ,
         ], JsonResponse::HTTP_ACCEPTED);
     }
 

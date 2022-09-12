@@ -9,11 +9,8 @@ use Illuminate\Http\Request;
 
 class GradeCategoryController extends Controller
 {
-<<<<<<< Updated upstream
-    // URI: /api/institute/category
-=======
+
     // URI: /http://127.0.0.1:8000/api/institute/category/get
->>>>>>> Stashed changes
     // SUM: get all the category details
     public function getGradeCategoryIndex(Request $request): JsonResponse
     {
@@ -44,11 +41,14 @@ class GradeCategoryController extends Controller
 
     // URI: /http://127.0.0.1:8000/api/institute/category/show
     // SUM: displays the category
-    public function getGradeCategoryShow($id,$category_name): JsonResponse
+    public function getGradeCategoryShow(Request $request,int $id): JsonResponse
     {
+        $sub= GradeCategory::where('id', '=',$id)
+            ->first();
+
         return response()->json([
-            'category_id' => $id,
-            'category_name' => $category_name,
+            'category_id' => $sub,
+
         ], JsonResponse::HTTP_OK);
     }
 
@@ -57,6 +57,7 @@ class GradeCategoryController extends Controller
     public function getGradeCategoryEdit($id): JsonResponse
     {
         $category=GradeCategory::where('category_id','=','$id')->first();
+
         return response()->json([
             'category' => $category,
         ], JsonResponse::HTTP_OK);
@@ -66,10 +67,20 @@ class GradeCategoryController extends Controller
     // SUM: update the category
     public function patchGradeCategoryUpdate(Request $request, $id): JsonResponse
     {
-        $id=$request->input('id');
-        $category_name=$request->input('category_name');
+//        $request->validate([
+//            'category_name' => 'required|string|max:45',
+//        ]);
+        $category_name = $request->input('category_name');
+//        dd($category_name);
+        $test=GradeCategory::toBase()
+        ->where([
+            ['id','=',$id],
+            ])
 
-        GradeCategory::where(['id','=','$id'])->update($id,$category_name);
+            ->update([
+                'category_name'=> $category_name
+            ]);
+
         return response()->json([
             'success' => 'update success'  ,
         ], JsonResponse::HTTP_ACCEPTED);
@@ -77,9 +88,10 @@ class GradeCategoryController extends Controller
 
     // URI: /api/institute/category/delete
     // SUM: deletes the category data
-    public function deleteGradeCategory($id): JsonResponse
+    public function deleteGradeCategory(Request $request,int $id): JsonResponse
     {
-        $category=GradeCategory::where('category_id','=','$id')->delete();
+        $category=GradeCategory::where('id','=',$id)
+            ->delete();
         return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
