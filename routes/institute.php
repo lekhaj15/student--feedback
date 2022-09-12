@@ -27,9 +27,18 @@ Route::post('/category/store', [GradeCategoryController::class, 'postGradeCatego
 Route::get('/category/index', [GradeCategoryController::class, 'getGradeCategoryIndex']);
 Route::get('/category/show/{id}', [GradeCategoryController::class, 'getGradeCategoryShow']);
 Route::delete('/category/{id}', [GradeCategoryController::class, 'deleteGradeCategory']);
-Route::get('/category/edit/{id}',[GradeCategoryController::class,'getGradeCategoryEdit']);
 Route::patch('/category/update/{id}',[GradeCategoryController::class, 'patchGradeCategoryUpdate']);
 
+<<<<<<< Updated upstream
+=======
+Route::delete('staff/delete/{id}', [StaffInformationController::class, 'deleteStaffInformation']);
+Route::get('/staff/index', [StaffInformationController::class, 'getStaffInformationIndex']);
+Route::post('/staff/store/{id}', [StaffInformationController::class,'postStaffInformationStore']);
+Route::get('/staff/show/{id}', [StaffInformationController::class,'getStaffInformationShow']);
+Route::patch('/staff/update/{id}',[StaffInformationController::class,'patchStaffInformationUpdate']);
+
+
+>>>>>>> Stashed changes
 
 Route::delete('staff/delete', [StaffInformationController::class, 'deleteStaffInformation']);
 Route::get('/staff/index', [StaffInformationController::class, 'getStaffInformationIndex']);
@@ -49,6 +58,15 @@ Route::delete('/student/delete/{id}',[StudentInformationController::class,'delet
 Route::post('/student/store',[StudentInformationController::class,'postStudentInformationStore']);
 Route::patch('/student/update/{id}',[StudentInformationController::class,'patchStudentInformationUpdate']);
 
+<<<<<<< Updated upstream
+=======
+Route::get('/student/index',[StudentInformationController::class,'getStudentInformationIndex']);
+Route::get('/student/information/show',[StudentInformationController::class,'getStudentInformationShow']);
+Route::delete('/student/delete',[StudentInformationController::class,'deleteStudentInformation']);
+Route::post('/student/store',[StudentInformationController::class,'postStudentInformationStore']);
+Route::patch('/student/update',[StudentInformationController::class,'patchStudentInformationUpdate']);
+Route::get('/student/edit',[StudentInformationController::class,'getStudentInformationEdit']);
+>>>>>>> Stashed changes
 
 
 

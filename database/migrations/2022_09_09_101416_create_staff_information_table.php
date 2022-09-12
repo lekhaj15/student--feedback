@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('staff_information', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('staff_id');
+            $table->integer('staff_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
-            $table->unsignedBigInteger('staff_name');
-            $table->unsignedBigInteger('staff_email');
-            $table->unsignedBigInteger('staff_phone');
-            $table->unsignedBigInteger('staff_dob');
-            $table->unsignedBigInteger('staff_password');
+            $table->string('staff_name');
+            $table->string('staff_email');
+            $table->integer('staff_phone');
+            $table->integer('staff_dob');
+            $table->string('staff_password');
             $table->timestamps();
 
 

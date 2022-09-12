@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class StudentInformationController extends Controller
 {
     // URI: /student/index
-    // SUM:as
+    // SUM: get all the student information details
     public function getStudentInformationIndex(Request $request): JsonResponse
     {
         $studentinformation=StudentInformation::toBase()

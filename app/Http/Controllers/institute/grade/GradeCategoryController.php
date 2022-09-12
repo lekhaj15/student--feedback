@@ -59,16 +59,6 @@ class GradeCategoryController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /api/institute/category/edit
-    // SUM: edit the category
-    public function getGradeCategoryEdit($id): JsonResponse
-    {
-        $category=GradeCategory::where('category_id','=','$id')->first();
-
-        return response()->json([
-            'category' => $category,
-        ], JsonResponse::HTTP_OK);
-    }
 
     // URI: /api/institute/category/update
     // SUM: update the category
