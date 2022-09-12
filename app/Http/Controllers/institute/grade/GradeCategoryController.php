@@ -10,12 +10,11 @@ use Illuminate\Http\Request;
 class GradeCategoryController extends Controller
 {
 
-<<<<<<< Updated upstream
-    // URI: /http://127.0.0.1:8000/api/institute/category/get
-=======
+
+
     // URI: /api/institute/category
 
->>>>>>> Stashed changes
+
     // SUM: get all the category details
     public function getGradeCategoryIndex(Request $request): JsonResponse
     {
@@ -48,18 +47,14 @@ class GradeCategoryController extends Controller
     // SUM: displays the category
     public function getGradeCategoryShow(Request $request,int $id): JsonResponse
     {
-<<<<<<< Updated upstream
+
         $sub= GradeCategory::where('id', '=',$id)
             ->first();
 
         return response()->json([
             'category_id' => $sub,
-=======
-        $caterory=GradeCategory::where('id','=',$id)
-            ->first();
-        return response()->json([
-            'caterory' => $caterory,
->>>>>>> Stashed changes
+
+
 
         ], JsonResponse::HTTP_OK);
     }
@@ -75,7 +70,7 @@ class GradeCategoryController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /http://127.0.0.1:8000/api/institute/category/update
+    // URI: /api/institute/category/update
     // SUM: update the category
     public function patchGradeCategoryUpdate(Request $request, $id): JsonResponse
     {

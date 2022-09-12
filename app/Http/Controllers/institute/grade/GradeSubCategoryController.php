@@ -56,34 +56,30 @@ class GradeSubCategoryController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /api/institute/subcategory/edit
-    // SUM:edit data
-    public function getGradeSubCategoryEdit($id): JsonResponse
-    {
-        $subcategory= GradeSubCategory::where(['subcategory_id','=',$id])
-        ->first();
-        $subcategoryname=GradeSubCategory::where(['subcategory_name','=',$subcategory['subcategory_name']])
-            ->first();
-        return response()->json([
-            'subcategory' => $subcategory,
-            'subcategoryname'=>$subcategoryname
-        ], JsonResponse::HTTP_OK);
-    }
+
 
     // URI: /api/institute/subcategory
     // SUM:
     public function patchGradeSubCategoryUpdate(Request $request,int $id): JsonResponse
     {
-        $id=$request->input('id');
-        $category_id=$request->input('category_id');
-        $subcategory_name=$request->input('name');
 
-        GradeSubCategory::toBase()
-        ->where('id','=','$id')
-            ->update($category_id,$subcategory_name);
+//        dd( $id);
+        $category_id=$request->input('category_id');
+
+        $subcategory_name = $request->input('subcategory_name');
+//        dd($category_name);
+        $test=GradeSubCategory::toBase()
+            ->where(
+                'id','=',$id
+            )
+
+            ->update([
+                'subcategory_name'=> $subcategory_name,
+                'category_id'=>$category_id,
+            ]);
 
         return response()->json([
-            'success' => 'update success'
+            'success' => 'update success'  ,
         ], JsonResponse::HTTP_ACCEPTED);
     }
 

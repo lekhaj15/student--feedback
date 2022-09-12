@@ -27,85 +27,79 @@ class StudentInformationController extends Controller
     // SUM:
     public function postStudentInformationStore(Request $request): JsonResponse
     {
-        $request->validate([
-            'student_name'=>'required|string|50',
+//        $request->validate([
+//            'student_name'=>'required|string|50',
+//            ]);
 
-
-
-        ]);
-        $id = $request->input('id');
+//        $id = $request->input('id');
         $student_id = $request->input('student_id');
         $student_name = $request->input('student_name');
-        $student_category_id = $request->input('student_category_id');
-        $student_subcategory_id= $request->input('student_subcategory_id');
+        $category_id = $request->input('category_id');
+        $subcategory_id= $request->input('subcategory_id');
         $student_email = $request->input('student_email');
         $student_password = $request->input('student_password');
         $student_phone=$request->input('student_phone');
         $student_status = $request->input('student_status');
-        $student_dob = $request->input('student_dob');
 
-        $studentinformation =StudentInformation::create([
-            'id' => $id,
-            'student_id'=>$student_id,
+
+        $student = StudentInformation::create([
+
+            'student_id'=> $student_id,
             'student_name' => $student_name,
-            'student_category_id'=>$student_category_id,'student_subcategory_id'=>$student_subcategory_id,
-            'student_email'=>$student_email,
-            'student_password'=>$student_password,
-            'student_phone'=>$student_phone,
-            'student_status'=>$student_status,
-            'student_dob' => $student_dob
+            'category_id'=> $category_id,
+            'subcategory_id'=> $subcategory_id,
+            'student_email'=> $student_email,
+            'student_password'=> $student_password,
+            'student_phone'=> $student_phone,
+            'student_status'=> $student_status,
+
         ]);
 
         return response()->json([
-            'studentinformation' => $studentinformation,
+            'student' => $student,
         ], JsonResponse::HTTP_CREATED);
     }
 
     // URI: /student/information
     // SUM:display of student information
-    public function getStudentInformationShow($id,$student_id,$student_name,$student_email,$student_phone,$student_status,$category_id,$subcategory_id): JsonResponse
+    public function getStudentInformationShow( Request $request, $id,): JsonResponse
     {
-        return response()->json([
-            'id'=>$id,
-            'student_id' => $student_id,
-            'student_name' => $student_name,
-            'student_email' => $student_email,
-            'student_phone' =>$student_phone,
-            'student_status' => $student_status,
-            'category_id' => $category_id,
-            'subcategory_id' => $subcategory_id
 
+        $student=StudentInformation::where('id','=',$id)
+            ->first();
+        return response()->json([
+            'student' =>$student,
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /
-    // SUM:
-    public function getStudentInformationEdit($id): JsonResponse
-    {
-        $studentinformation = StudentInformation::where(['id','=','$id'])
-        ->first();
-
-        return response()->json([
-            'studentinformation' => $studentinformation,
-        ], JsonResponse::HTTP_OK);
-    }
 
     // URI: /student/update
     // SUM:update student information
-    public function patchStudentInformationUpdate(Request $request, $id): JsonResponse
+    public function patchStudentInformationUpdate(Request $request,int $id): JsonResponse
     {
-        $id = $request->input('id');
+
         $student_id = $request->input('student_id');
         $student_name = $request->input('student_name');
-        $student_category_id = $request->input('student_category_id');
-        $student_subcategory_id= $request->input('student_subcategory_id');
+        $category_id = $request->input('category_id');
+        $subcategory_id= $request->input('subcategory_id');
         $student_email = $request->input('student_email');
         $student_password = $request->input('student_password');
         $student_phone=$request->input('student_phone');
         $student_status = $request->input('student_status');
-        $student_dob = $request->input('student_dob');
 
-        StudentInformation::where(['id','=','$id'])->update($id,$student_id,$student_name,$student_category_id,$student_dob,$student_status,$student_phone,$student_email,$student_password,$student_subcategory_id);
+
+        StudentInformation::toBase()
+            ->where('id' ,'=', $id)
+            ->update(['student_id' => $student_id,
+                'student_name' =>$student_name,
+                'category_id'=> $category_id,
+                'subcategory_id'=>$subcategory_id,
+                'student_email'=>$student_email,
+                'student_password'=>$student_password,
+                'student_phone'=>$student_phone,
+                'student_status'=>$student_status,]);
+
+
 
         return response()->json([
             'update' => 'success',

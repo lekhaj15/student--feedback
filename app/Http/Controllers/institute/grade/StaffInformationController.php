@@ -66,17 +66,17 @@ class StaffInformationController extends Controller
 
     // URI: /
     // SUM: edits the staff info
-    public function getStaffInformationEdit($id): JsonResponse
+ /*   public function getStaffInformationEdit($id): JsonResponse
     {
         $staff=StaffInformation::where('staff_id','=','$id')->first();
         return response()->json([
             'staffinformation' => $staffinformation,
         ], JsonResponse::HTTP_OK);
-    }
+    }*/
 
     // URI: /
     // SUM:
-    public function patchUpdate(Request $request, $id): JsonResponse
+   /* public function patchUpdate(Request $request, $id): JsonResponse
     {
         return response()->json([
             '' => ,
@@ -91,5 +91,5 @@ class StaffInformationController extends Controller
         return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
-    }
+    }*/
 }
