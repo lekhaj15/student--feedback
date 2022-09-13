@@ -48,12 +48,9 @@ class StaffInformationController extends Controller
             'staff_phone' => $staff_phone,
             'staff_dob' => $staff_dob,
             'staff_password' => $staff_password,
-<<<<<<< Updated upstream
-        'staff_category_id'=> $staff_category_id,]);
-=======
+
           ]);
 
->>>>>>> Stashed changes
         return response()->json([
             'staff_information' => $staff_information,
         ], JsonResponse::HTTP_CREATED);
@@ -64,32 +61,15 @@ class StaffInformationController extends Controller
     public function getStaffInformationShow( Request $request , int $id): JsonResponse
     {
         $staff = StaffInformation::where('id', '=', $id)
-        ->first();
+            ->first();
         return response()->json([
-            'staff' => $staff,
-
-<<<<<<< Updated upstream
-    // URI: /
-    // SUM: edits the staff info
- /*   public function getStaffInformationEdit($id): JsonResponse
-    {
-        $staff=StaffInformation::where('staff_id','=','$id')->first();
-        return response()->json([
-            'staffinformation' => $staffinformation,
-=======
->>>>>>> Stashed changes
-        ], JsonResponse::HTTP_OK);
-    }*/
+            'staff' => $staff,]);
+    }
 
 
     // URI: /
-<<<<<<< Updated upstream
-    // SUM:
-   /* public function patchUpdate(Request $request, $id): JsonResponse
-=======
-    // SUM: updates the staff information
+        // SUM: updates the staff information
     public function patchStaffInformationUpdate(Request $request, int $id): JsonResponse
->>>>>>> Stashed changes
     {
 
                 $staff_id = $request->input('staff_id');
@@ -123,9 +103,9 @@ class StaffInformationController extends Controller
     // SUM: deletes the staff data
     public function deleteStaffInformation(Request $request,int $id): JsonResponse
     {
-        $staff=StaffInformation::where('staff_id','=',$id)->delete();
+        $staff=StaffInformation::where('id','=',$id)->delete();
         return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
-    }*/
+    }
 }
