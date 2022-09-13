@@ -29,8 +29,8 @@ Route::get('/category/show/{id}', [GradeCategoryController::class, 'getGradeCate
 Route::delete('/category/{id}', [GradeCategoryController::class, 'deleteGradeCategory']);
 Route::patch('/category/update/{id}',[GradeCategoryController::class, 'patchGradeCategoryUpdate']);
 
-<<<<<<< Updated upstream
-=======
+
+
 Route::delete('staff/delete/{id}', [StaffInformationController::class, 'deleteStaffInformation']);
 Route::get('/staff/index', [StaffInformationController::class, 'getStaffInformationIndex']);
 Route::post('/staff/store/{id}', [StaffInformationController::class,'postStaffInformationStore']);
@@ -38,12 +38,15 @@ Route::get('/staff/show/{id}', [StaffInformationController::class,'getStaffInfor
 Route::patch('/staff/update/{id}',[StaffInformationController::class,'patchStaffInformationUpdate']);
 
 
->>>>>>> Stashed changes
+Route::delete('staffgrade/delete/{id}', [\App\Http\Controllers\institute\grade\StaffGradeController::class, 'deletestaffgradeDestroy']);
+Route::get('/staffgrade/index', [\App\Http\Controllers\institute\grade\StaffGradeController::class, 'getstaffgradeIndex']);
+Route::post('/staffgrade/store/{id}', [\App\Http\Controllers\institute\grade\StaffGradeController::class,'poststaffgradeStore']);
+Route::get('/staffgrade/show/{id}', [\App\Http\Controllers\institute\grade\StaffGradeController::class,'getstaffgradeShow']);
+Route::patch('/staffgrade/update/{id}',[\App\Http\Controllers\institute\grade\StaffGradeController::class,'patchstaffgradeUpdate']);
 
-Route::delete('staff/delete', [StaffInformationController::class, 'deleteStaffInformation']);
-Route::get('/staff/index', [StaffInformationController::class, 'getStaffInformationIndex']);
-Route::post('/staff/store', [StaffInformationController::class,'postStaffInformationStore']);
-Route::get('/staff/show', [StaffInformationController::class,'getStaffInformationShow']);
+
+
+
 
 Route::post('/subcategory/store', [GradeSubCategoryController::class, 'postSubCategoryStore']);
 Route::get('/subcategory/index', [GradeSubCategoryController::class, 'getGradeSubCategoryIndex']);
@@ -58,15 +61,8 @@ Route::delete('/student/delete/{id}',[StudentInformationController::class,'delet
 Route::post('/student/store',[StudentInformationController::class,'postStudentInformationStore']);
 Route::patch('/student/update/{id}',[StudentInformationController::class,'patchStudentInformationUpdate']);
 
-<<<<<<< Updated upstream
-=======
-Route::get('/student/index',[StudentInformationController::class,'getStudentInformationIndex']);
-Route::get('/student/information/show',[StudentInformationController::class,'getStudentInformationShow']);
-Route::delete('/student/delete',[StudentInformationController::class,'deleteStudentInformation']);
-Route::post('/student/store',[StudentInformationController::class,'postStudentInformationStore']);
-Route::patch('/student/update',[StudentInformationController::class,'patchStudentInformationUpdate']);
-Route::get('/student/edit',[StudentInformationController::class,'getStudentInformationEdit']);
->>>>>>> Stashed changes
+
+
 
 
 

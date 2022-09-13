@@ -27,11 +27,7 @@ class StudentInformationController extends Controller
     // SUM:
     public function postStudentInformationStore(Request $request): JsonResponse
     {
-//        $request->validate([
-//            'student_name'=>'required|string|50',
-//            ]);
 
-//        $id = $request->input('id');
         $student_id = $request->input('student_id');
         $student_name = $request->input('student_name');
         $category_id = $request->input('category_id');
@@ -110,7 +106,7 @@ class StudentInformationController extends Controller
     // SUM:delete student data
     public function deleteStudentInformation(Request $request,int $id): JsonResponse
     {
-        $student= StudentInformation::where('student_id','=',$id)->delete();
+        $student= StudentInformation::where('id','=',$id)->delete();
         return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);

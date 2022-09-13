@@ -19,15 +19,11 @@ class StaffInformationController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
-    // URI: /http://127.0.0.1:8000/api/institute/staff/store
+    // URI: /api/institute/staff/store
     // SUM: store the staff info
     public function postStaffInformationStore(Request $request): JsonResponse
     {
-//        $request->validate([
-//            'staff_name' => 'required|string|max:45',
-//        ]);
 
-//        $id = $request->input('id');
         $staff_id = $request->input('staff_id');
         $category_id = $request->input('category_id');
         $subcategory_id = $request->input('subcategory_id');
@@ -39,7 +35,7 @@ class StaffInformationController extends Controller
 
 
         $staff_information =StaffInformation::create([
-//            'id' => $id,
+
             'staff_id' => $staff_id,
             'category_id'=> $category_id,
             'subcategory_id'=> $subcategory_id,
@@ -48,12 +44,10 @@ class StaffInformationController extends Controller
             'staff_phone' => $staff_phone,
             'staff_dob' => $staff_dob,
             'staff_password' => $staff_password,
-<<<<<<< Updated upstream
-        'staff_category_id'=> $staff_category_id,]);
-=======
+
           ]);
 
->>>>>>> Stashed changes
+
         return response()->json([
             'staff_information' => $staff_information,
         ], JsonResponse::HTTP_CREATED);
@@ -64,32 +58,22 @@ class StaffInformationController extends Controller
     public function getStaffInformationShow( Request $request , int $id): JsonResponse
     {
         $staff = StaffInformation::where('id', '=', $id)
-        ->first();
+            ->first();
         return response()->json([
             'staff' => $staff,
+        ]);
+    }
 
-<<<<<<< Updated upstream
-    // URI: /
-    // SUM: edits the staff info
- /*   public function getStaffInformationEdit($id): JsonResponse
-    {
-        $staff=StaffInformation::where('staff_id','=','$id')->first();
-        return response()->json([
-            'staffinformation' => $staffinformation,
-=======
->>>>>>> Stashed changes
-        ], JsonResponse::HTTP_OK);
-    }*/
+
 
 
     // URI: /
-<<<<<<< Updated upstream
-    // SUM:
-   /* public function patchUpdate(Request $request, $id): JsonResponse
-=======
+
+
+
     // SUM: updates the staff information
     public function patchStaffInformationUpdate(Request $request, int $id): JsonResponse
->>>>>>> Stashed changes
+
     {
 
                 $staff_id = $request->input('staff_id');
@@ -127,5 +111,5 @@ class StaffInformationController extends Controller
         return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
-    }*/
+    }
 }
