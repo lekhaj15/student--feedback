@@ -6,6 +6,7 @@ use App\Http\Controllers\institute\grade\GradeSubCategoryController;
 use App\Http\Controllers\institute\grade\StaffGradeController;
 use App\Http\Controllers\institute\grade\StaffInformationController;
 use App\Http\Controllers\institute\grade\StudentInformationController;
+use App\Http\Controllers\institute\questions\TopicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,11 @@ Route::post('/student/store',[StudentInformationController::class,'postStudentIn
 Route::patch('/student/update/{id}',[StudentInformationController::class,'patchStudentInformationUpdate']);
 
 
+Route::post('/topic/store', [TopicController::class, 'postquestionstopicStore']);
+Route::get('/topic/index', [TopicController::class, 'getquestionstopicIndex']);
+Route::get('/topic/show/{id}', [TopicController::class, 'getquestionstopicShow']);
+Route::delete('/topic/delete/{id}',[TopicController::class,'deletequestionstopicDestroy']);
+Route::patch('/topic/update/{id}',[TopicController::class,'patchquestionstopicUpdate']);
 
 
 

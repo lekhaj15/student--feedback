@@ -15,7 +15,7 @@ return new class extends Migration {
         if (!Schema::hasTable('staff_grades')) {
             Schema::create('staff_grades', function (Blueprint $table) {
                 $table->id();
-                $table->increments('s_id');
+                $table->integer('s_id');
                 $table->integer('category_id');
                 $table->integer('subcategory_id');
                 $table->timestamps();

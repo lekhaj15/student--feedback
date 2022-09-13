@@ -64,9 +64,7 @@ class GradeCategoryController extends Controller
     // SUM: update the category
     public function patchGradeCategoryUpdate(Request $request, $id): JsonResponse
     {
-//        $request->validate([
-//            'category_name' => 'required|string|max:45',
-//        ]);
+
         $category_name = $request->input('category_name');
 //        dd($category_name);
         $test=GradeCategory::toBase()
