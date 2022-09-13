@@ -60,6 +60,7 @@ class StaffInformationController extends Controller
         $staff = StaffInformation::where('id', '=', $id)
             ->first();
         return response()->json([
+
             'staff' => $staff,
         ]);
     }
@@ -71,7 +72,8 @@ class StaffInformationController extends Controller
 
 
 
-    // SUM: updates the staff information
+
+        // SUM: updates the staff information
     public function patchStaffInformationUpdate(Request $request, int $id): JsonResponse
 
     {
@@ -107,7 +109,7 @@ class StaffInformationController extends Controller
     // SUM: deletes the staff data
     public function deleteStaffInformation(Request $request,int $id): JsonResponse
     {
-        $staff=StaffInformation::where('staff_id','=',$id)->delete();
+        $staff=StaffInformation::where('id','=',$id)->delete();
         return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);
