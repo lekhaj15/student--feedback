@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\institute\grade;
 
 use App\Http\Controllers\Controller;
-use App\Models\institute\staff\StaffGrade;
+
+use App\Models\institute\staffgrade\StaffGrade;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,6 @@ class StaffGradeController extends Controller
         $subcategory_id= $request->input('subcategory_id');
 
         $staff = StaffGrade::create([
-
             's_id'=> $s_id,
             'category_id'=> $category_id,
             'subcategory_id'=> $subcategory_id,

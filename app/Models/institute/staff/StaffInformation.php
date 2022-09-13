@@ -13,7 +13,8 @@ class StaffInformation extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','staff_id','category_id','subcategory_id','staff_name','staff_email','staff_phone','staff_dob','staff_password',
+        'id','staff_id','category_id','subcategory_id','staff_name',
+        'staff_email','staff_phone','staff_dob','staff_password',
     ];
 
     protected $hidden = [

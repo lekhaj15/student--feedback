@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('staff_information', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->id();
             $table->integer('staff_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
             $table->string('staff_name');
             $table->string('staff_email');
-            $table->integer('staff_phone');
-            $table->integer('staff_dob');
+            $table->string('staff_phone');
+            $table->string('staff_dob');
             $table->string('staff_password');
             $table->timestamps();
 

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('grade_sub_categories', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->id();
             $table->unsignedBigInteger('category_id');
             $table->string('subcategory_name');
             $table->timestamps();

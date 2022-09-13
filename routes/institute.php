@@ -3,6 +3,7 @@
 use App\Http\Controllers\institute\grade\GradeCategoryController;
 
 use App\Http\Controllers\institute\grade\GradeSubCategoryController;
+use App\Http\Controllers\institute\grade\StaffGradeController;
 use App\Http\Controllers\institute\grade\StaffInformationController;
 use App\Http\Controllers\institute\grade\StudentInformationController;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/category/store', [GradeCategoryController::class, 'postGradeCategoryStore']);
 Route::get('/category/index', [GradeCategoryController::class, 'getGradeCategoryIndex']);
 Route::get('/category/show/{id}', [GradeCategoryController::class, 'getGradeCategoryShow']);
-Route::delete('/category/{id}', [GradeCategoryController::class, 'deleteGradeCategory']);
+Route::delete('/category/delete/{id}', [GradeCategoryController::class, 'deleteGradeCategory']);
 Route::patch('/category/update/{id}',[GradeCategoryController::class, 'patchGradeCategoryUpdate']);
 
 
@@ -37,15 +38,11 @@ Route::get('/staff/show/{id}', [StaffInformationController::class,'getStaffInfor
 Route::patch('/staff/update/{id}',[StaffInformationController::class,'patchStaffInformationUpdate']);
 
 
-Route::delete('staffgrade/delete/{id}', [\App\Http\Controllers\institute\grade\StaffGradeController::class, 'deletestaffgradeDestroy']);
-Route::get('/staffgrade/index', [\App\Http\Controllers\institute\grade\StaffGradeController::class, 'getstaffgradeIndex']);
-Route::post('/staffgrade/store', [\App\Http\Controllers\institute\grade\StaffGradeController::class,'poststaffgradeStore']);
-Route::get('/staffgrade/show/{id}', [\App\Http\Controllers\institute\grade\StaffGradeController::class,'getstaffgradeShow']);
-Route::patch('/staffgrade/update/{id}',[\App\Http\Controllers\institute\grade\StaffGradeController::class,'patchstaffgradeUpdate']);
-
-
-
-
+Route::delete('staffgrade/delete/{id}', [StaffGradeController::class, 'deletestaffgradeDestroy']);
+Route::get('/staffgrade/index', [StaffGradeController::class, 'getstaffgradeIndex']);
+Route::post('/staffgrade/store', [StaffGradeController::class,'poststaffgradeStore']);
+Route::get('/staffgrade/show/{id}', [StaffGradeController::class,'getstaffgradeShow']);
+Route::patch('/staffgrade/update/{id}',[StaffGradeController::class,'patchstaffgradeUpdate']);
 
 
 Route::post('/subcategory/store', [GradeSubCategoryController::class, 'postSubCategoryStore']);

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('grade_categories', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->id();
             $table->string('category_name');
             $table->timestamps();
         });
