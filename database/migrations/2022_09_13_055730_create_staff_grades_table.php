@@ -15,12 +15,12 @@ return new class extends Migration {
         if (!Schema::hasTable('staff_grades')) {
             Schema::create('staff_grades', function (Blueprint $table) {
                 $table->id();
-                $table->integer('s_id');
-                $table->integer('category_id');
-                $table->integer('subcategory_id');
+                $table->unsignedBigInteger('s_id');
+                $table->unsignedBigInteger('category_id');
+                $table->unsignedBigInteger('subcategory_id');
                 $table->timestamps();
 
-                $table->foreign('category_id')
+                $table->foreign('category_id',)
                     ->references('id')
                     ->on(\App\Models\institute\grade\GradeCategory::getTableName())
                     ->onDelete('cascade');

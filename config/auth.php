@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'institute' => [
+            'driver' => 'jwt',
+            'provider' => 'institutes',
+            'hash' => false,
+        ],
+
+
     ],
 
     /*
@@ -69,6 +77,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'institutes' => [
+            'driver' => 'eloquent',
+            'model' =>\App\Models\institute\Auth\Institute::class,
+        ],
+
     ],
 
     /*
