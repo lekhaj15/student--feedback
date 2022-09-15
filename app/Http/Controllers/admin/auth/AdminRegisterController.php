@@ -3,62 +3,36 @@
 namespace App\Http\Controllers\admin\auth;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\admin\Auth\Admin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminRegisterController extends Controller
 {
     // URI: /
-    // SUM:
-    public function getIndex(Request $request): JsonResponse
+    // SUM: register new admin
+    public function postAdminRegister(Request $request): JsonResponse
     {
-        return response()->json([
-            '' => null,
-        ], JsonResponse::HTTP_OK);
-    }
+//        $request->validate([
+//            'name' => ['required', 'string', 'max:255'],
+//            'email' => ['required', 'string', 'email', 'max:255', 'unique:admin'],
+//            'password' => ['required', 'string', 'min:4'],
+//        ]);
 
-    // URI: /
-    // SUM:
-    public function postStore(Request $request): JsonResponse
-    {
-        return response()->json([
-            '' => null,
-        ], JsonResponse::HTTP_CREATED);
-    }
+        $name = e($request->input('name'));
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-    // URI: /
-    // SUM:
-    public function getShow($id): JsonResponse
-    {
-        return response()->json([
-            '' => null,
-        ], JsonResponse::HTTP_OK);
-    }
+        Admin::create([
+            'full_name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+        ]);
 
-    // URI: /
-    // SUM:
-    public function getEdit($id): JsonResponse
-    {
-        return response()->json([
-            '' => null,
-        ], JsonResponse::HTTP_OK);
-    }
-
-    // URI: /
-    // SUM:
-    public function patchUpdate(Request $request, $id): JsonResponse
-    {
-        return response()->json([
-            '' => null,
-        ], JsonResponse::HTTP_ACCEPTED);
-    }
-
-    // URI: /
-    // SUM:
-    public function deleteDestroy($id): JsonResponse
-    {
-        return response()->json([
-            '' => null,
-        ], JsonResponse::HTTP_NO_CONTENT);
+        return response()->json(['success' => 'please verify your email'], Response::HTTP_CREATED);
     }
 }
+

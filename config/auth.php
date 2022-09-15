@@ -47,6 +47,12 @@ return [
             'hash' => false,
         ],
 
+        'admin' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+            'hash' => false,
+        ]
+
 
     ],
 
@@ -81,6 +87,11 @@ return [
             'driver' => 'eloquent',
             'model' =>\App\Models\institute\Auth\Institute::class,
         ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' =>\App\Models\admin\Auth\Admin::class,
+        ]
 
     ],
 
