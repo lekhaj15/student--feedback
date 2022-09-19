@@ -42,11 +42,15 @@ class InstituteController extends Controller
     {
        $full_name = $request->input('full_name');
        $email = $request->input('email');
+       $role = $request->input('role');
+       $password = $request->input('password');
 
 
         $institute =Institute::create([
             'full_name' => $full_name,
             'email' => $email,
+            'role' => $role,
+            'password' =>"password"
         ]);
         return response()->json([
             'institute' => $institute,
