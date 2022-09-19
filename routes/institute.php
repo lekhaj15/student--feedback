@@ -32,6 +32,7 @@ Route::group([
     Route::post('/logout', [InstituteLoginController::class, 'postInstituteLogout'])->middleware(['jwt', 'auth:institute']);
 
     Route::get('/me', [InstituteProfileController::class, 'getInstituteIndex'])->middleware(['jwt', 'auth:institute']);
+
 });
 
 
