@@ -51,7 +51,13 @@ return [
             'driver' => 'jwt',
             'provider' => 'admins',
             'hash' => false,
-        ]
+        ],
+        'student' => [
+            'driver' => 'jwt',
+            'provider' => 'student',
+             'hash' => false,
+            ],
+
 
 
     ],
@@ -91,7 +97,14 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' =>\App\Models\admin\Auth\Admin::class,
+        ],
+
+        'students' => [
+            'driver' => 'eloquent',
+            'model' =>\App\Models\institute\student\StudentInformation::class,
+
         ]
+
 
     ],
 

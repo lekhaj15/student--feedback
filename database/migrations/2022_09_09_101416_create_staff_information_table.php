@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('staff_phone');
             $table->string('staff_dob');
             $table->string('staff_password');
+            $table->string('role');
+
             $table->timestamps();
 
 

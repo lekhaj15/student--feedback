@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class StaffInformation extends Model
+class StaffInformation extends  Authenticatable implements JWTSubject
 {
     use HasFactory;
 
@@ -17,11 +19,11 @@ class StaffInformation extends Model
 
     protected $fillable = [
         'id','staff_id','category_id','subcategory_id','staff_name',
-        'staff_email','staff_phone','staff_dob','staff_password',
+        'staff_email','staff_phone','staff_dob','staff_password','role',
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at',
+        'created_at', 'updated_at','password', 'remember_token',
     ];
 
     public function scopegetTableName(): string
@@ -36,5 +38,17 @@ class StaffInformation extends Model
     public function subcategoryInformation(): HasOne
     {
         return $this->hasOne(GradeSubCategory::class, 'id', 'subcategory_id');
+    }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     */
+    public function getJWTCustomClaims(): array
+    {
+        return [];
     }
 }

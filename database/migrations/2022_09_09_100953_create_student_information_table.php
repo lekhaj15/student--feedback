@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('student_phone');
             $table->string('student_password');
             $table->boolean('student_status');
+            $table->string('role');
+
             $table->timestamps();
 
             $table->foreign('category_id')
