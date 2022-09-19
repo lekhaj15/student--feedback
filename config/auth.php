@@ -58,6 +58,12 @@ return [
              'hash' => false,
             ],
 
+        'staff' => [
+            'driver' => 'jwt',
+            'provider' => 'staff',
+            'hash' => false,
+        ],
+
 
 
     ],
@@ -103,7 +109,12 @@ return [
             'driver' => 'eloquent',
             'model' =>\App\Models\institute\student\StudentInformation::class,
 
-        ]
+        ],
+        'staffs' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\institute\staff\StaffInformation::class,
+            ],
+
 
 
     ],

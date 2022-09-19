@@ -85,7 +85,7 @@ class StudentLoginController extends Controller
 
     // URI: /
     // SUM:
-    public function postAdminLogout(): JsonResponse
+    public function postStudentLogout(): JsonResponse
     {
         auth('student')->logout();
         return response()->json([
