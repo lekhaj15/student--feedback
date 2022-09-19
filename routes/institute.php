@@ -41,7 +41,8 @@ Route::group([
 
     Route::post('/category/store', [GradeCategoryController::class, 'postGradeCategoryStore']);
     Route::get('/category/index', [GradeCategoryController::class, 'getGradeCategoryIndex']);
-    Route::get('/category/show/{id}', [GradeCategoryController::class, 'getGradeCategoryShow']);
+    Route::get('/category', [GradeCategoryController::class, 'getGradeCategory']);
+    Route::get('/category/show/{id}/edit', [GradeCategoryController::class, 'getGradeCategoryShow']);
     Route::delete('/category/delete/{id}', [GradeCategoryController::class, 'deleteGradeCategory']);
     Route::patch('/category/update/{id}', [GradeCategoryController::class, 'patchGradeCategoryUpdate']);
 
@@ -62,13 +63,15 @@ Route::group([
 
     Route::post('/subcategory/store', [GradeSubCategoryController::class, 'postSubCategoryStore']);
     Route::get('/subcategory/index', [GradeSubCategoryController::class, 'getGradeSubCategoryIndex']);
-    Route::get('/subcategory/show/{id}', [GradeSubCategoryController::class, 'getGradeSubCategoryShow']);
+    Route::get('/subcategory/{category_id}', [GradeSubCategoryController::class, 'getGradeSubCategory']);
+
+    Route::get('/subcategory/show/{id}/edit', [GradeSubCategoryController::class, 'getGradeSubCategoryShow']);
     Route::delete('/subcategory/delete/{id}', [GradeSubCategoryController::class, 'deleteGradeSubCategory']);
     Route::patch('/subcategory/update/{id}', [GradeSubCategoryController::class, 'patchGradeSubCategoryUpdate']);
 
 
     Route::get('/student/index', [StudentInformationController::class, 'getStudentInformationIndex']);
-    Route::get('/student/show/{id}', [StudentInformationController::class, 'getStudentInformationShow']);
+    Route::get('/student/show/{id}/edit ', [StudentInformationController::class, 'getStudentInformationShow']);
     Route::delete('/student/delete/{id}', [StudentInformationController::class, 'deleteStudentInformation']);
     Route::post('/student/store', [StudentInformationController::class, 'postStudentInformationStore']);
     Route::patch('/student/update/{id}', [StudentInformationController::class, 'patchStudentInformationUpdate']);

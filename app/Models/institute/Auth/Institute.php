@@ -17,7 +17,7 @@ class Institute extends Authenticatable implements JWTSubject
 //    protected $table = '';
 
     protected $fillable = [
-        'id','full_name', 'email', 'password',
+        'id','full_name', 'email','role', 'password',
     ];
 
     protected $hidden = [

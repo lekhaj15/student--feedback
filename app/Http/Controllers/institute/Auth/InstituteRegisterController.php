@@ -30,6 +30,7 @@ class InstituteRegisterController extends Controller
         $institute = Institute::create([
             'full_name' => $name,
             'email' => $email,
+            'role' =>"institute",
             'password' => Hash::make($password),
         ]);
 

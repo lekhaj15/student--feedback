@@ -15,11 +15,11 @@ class StudentInformationController extends Controller
     // SUM: get all the student information details
     public function getStudentInformationIndex(Request $request): JsonResponse
     {
-        $studentinformation=StudentInformation::toBase()
-            ->get();
+        $studentinformation=StudentInformation::with(['categoryInformation','subcategoryInformation'])
+            ->paginate(15);
 
         return response()->json([
-            'studentinformation' => $studentinformation,
+            'student_information' => $studentinformation,
         ], JsonResponse::HTTP_OK);
     }
 
@@ -45,7 +45,7 @@ class StudentInformationController extends Controller
             'category_id'=> $category_id,
             'subcategory_id'=> $subcategory_id,
             'student_email'=> $student_email,
-            'student_password'=> $student_password,
+            'student_password'=> "student",
             'student_phone'=> $student_phone,
             'student_status'=> $student_status,
 
@@ -61,7 +61,8 @@ class StudentInformationController extends Controller
     public function getStudentInformationShow( Request $request, $id,): JsonResponse
     {
 
-        $student=StudentInformation::where('id','=',$id)
+        $student=StudentInformation::with(['categoryInformation','subcategoryInformation'])
+           ->where('id','=',$id)
             ->first();
         return response()->json([
             'student' =>$student,
@@ -79,7 +80,7 @@ class StudentInformationController extends Controller
         $category_id = $request->input('category_id');
         $subcategory_id= $request->input('subcategory_id');
         $student_email = $request->input('student_email');
-        $student_password = $request->input('student_password');
+
         $student_phone=$request->input('student_phone');
         $student_status = $request->input('student_status');
 
@@ -91,7 +92,7 @@ class StudentInformationController extends Controller
                 'category_id'=> $category_id,
                 'subcategory_id'=>$subcategory_id,
                 'student_email'=>$student_email,
-                'student_password'=>$student_password,
+
                 'student_phone'=>$student_phone,
                 'student_status'=>$student_status,]);
 

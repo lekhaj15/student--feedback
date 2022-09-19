@@ -24,4 +24,6 @@ class GradeCategory extends Model
     {
         return $this->getTable();
     }
+
+
 }

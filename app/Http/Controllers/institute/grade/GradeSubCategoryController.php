@@ -14,9 +14,9 @@ class GradeSubCategoryController extends Controller
     // SUM: get all the subcategory details
     public function getGradeSubCategoryIndex(Request $request): JsonResponse
     {
-        $subcategory=GradeSubCategory::toBase()
-            ->get();
-
+        $subcategory=GradeSubCategory::with(['subcategoryInformation'])
+            ->orderBy('category_id')
+            ->paginate(15);
 
         return response()->json([
             'subcategory' => $subcategory,
@@ -50,12 +50,21 @@ class GradeSubCategoryController extends Controller
             ->first();
 
         return response()->json([
-
             'subcategory'=>$subcategory,
-
         ], JsonResponse::HTTP_OK);
     }
 
+    // URI: /api/institute/subcategory/category_id
+    // SUM:display the values
+    public function getGradeSubCategory( Request $request,int $category_id): JsonResponse
+    {
+        $subcategory=GradeSubCategory::where('category_id','=',$category_id)
+            ->get();
+
+        return response()->json([
+            'subcategory'=>$subcategory,
+        ], JsonResponse::HTTP_OK);
+    }
 
 
     // URI: /api/institute/subcategory
@@ -91,7 +100,7 @@ class GradeSubCategoryController extends Controller
         $subcategory= GradeSubCategory::where('id', '=', $id)
 
             ->delete();
-//        dd($id);
+
         return response()->json([
             'success' => 'delete success',
         ], JsonResponse::HTTP_NO_CONTENT);

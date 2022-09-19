@@ -4,16 +4,19 @@ namespace App\Http\Controllers\institute\grade;
 
 use App\Http\Controllers\Controller;
 use App\Models\institute\staff\StaffInformation;
+use App\Models\institute\student\StudentInformation;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class StaffInformationController extends Controller
 {
-    // URI: /
+    // URI: /institute/staff/index
     // SUM: get all staff details
     public function getStaffInformationIndex(Request $request): JsonResponse
     {
-        $staffinformation=StaffInformation::toBase()->get();
+        $staffinformation=StaffInformation::with(['categoryInformation','subcategoryInformation'])
+            ->paginate(15);
+
         return response()->json([
             'staffinformation' => $staffinformation,
         ], JsonResponse::HTTP_OK);
@@ -34,7 +37,7 @@ class StaffInformationController extends Controller
         $staff_password = $request->input('staff_password');
 
 
-        $staff_information =StaffInformation::create([
+        $staff =StaffInformation::create([
 
             'staff_id' => $staff_id,
             'category_id'=> $category_id,
@@ -43,13 +46,13 @@ class StaffInformationController extends Controller
             'staff_email' => $staff_email,
             'staff_phone' => $staff_phone,
             'staff_dob' => $staff_dob,
-            'staff_password' => $staff_password,
+            'staff_password' => "staff",
 
           ]);
 
 
         return response()->json([
-            'staff_information' => $staff_information,
+            'staff' => $staff,
         ], JsonResponse::HTTP_CREATED);
     }
 
@@ -69,10 +72,6 @@ class StaffInformationController extends Controller
 
 
     // URI: /
-
-
-
-
         // SUM: updates the staff information
     public function patchStaffInformationUpdate(Request $request, int $id): JsonResponse
 
@@ -82,7 +81,7 @@ class StaffInformationController extends Controller
                 $staff_name = $request->input('staff_name');
                 $category_id = $request->input('category_id');
                 $staff_email = $request->input('staff_email');
-                $staff_password = $request->input('staff_password');
+
                 $staff_phone=$request->input('staff_phone');
                 $staff_dob = $request->input('staff_dob');
                 $subcategory_id = $request->input('subcategory_id');
@@ -93,7 +92,7 @@ class StaffInformationController extends Controller
                         'staff_name'=> $staff_name,
                         'staff_email'=>$staff_email,
                         'staff_phone'=>$staff_phone,
-                        'staff_password'=>$staff_password,
+
                         'staff_dob'=> $staff_dob,
                         'category_id'=>$category_id,
                         'subcategory_id'=>$subcategory_id,
