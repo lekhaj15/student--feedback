@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group([],
+Route::group([
+    'prefix' => 'auth'
+],
 
     function()
     {

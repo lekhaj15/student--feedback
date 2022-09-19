@@ -5,7 +5,9 @@ use App\Http\Controllers\student\auth\StudentProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::group([],
+Route::group([
+    'prefix' => 'auth'
+],
 
  function()
 {
