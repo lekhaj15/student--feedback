@@ -7,6 +7,7 @@ use App\Models\institute\Auth\Institute;
 use App\Models\institute\grade\GradeCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class InstituteController extends Controller
 {
@@ -50,7 +51,7 @@ class InstituteController extends Controller
             'full_name' => $full_name,
             'email' => $email,
             'role' => $role,
-            'password' =>"password"
+            'password' =>Hash::make("password")
         ]);
         return response()->json([
             'institute' => $institute,
@@ -79,7 +80,7 @@ class InstituteController extends Controller
         $full_name = $request->input('full_name');
         $email= $request->input('email');
 //        dd($category_name);
-        $test=GradeCategory::toBase()
+        $test=Institute::toBase()
             ->where([
                 ['id','=',$id],
             ])
