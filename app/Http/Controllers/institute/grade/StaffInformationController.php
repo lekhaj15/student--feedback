@@ -7,6 +7,7 @@ use App\Models\institute\staff\StaffInformation;
 use App\Models\institute\student\StudentInformation;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class StaffInformationController extends Controller
 {
@@ -26,6 +27,8 @@ class StaffInformationController extends Controller
     // SUM: store the staff info
     public function postStaffInformationStore(Request $request): JsonResponse
     {
+        $institute_id = auth('institute')->id();
+
 
         $staff_id = $request->input('staff_id');
         $category_id = $request->input('category_id');
@@ -38,6 +41,8 @@ class StaffInformationController extends Controller
 
 
         $staff =StaffInformation::create([
+            'institute_id'=>$institute_id,
+
 
             'staff_id' => $staff_id,
             'category_id'=> $category_id,
@@ -46,7 +51,7 @@ class StaffInformationController extends Controller
             'staff_email' => $staff_email,
             'staff_phone' => $staff_phone,
             'staff_dob' => $staff_dob,
-            'staff_password' => "staff",
+            'staff_password'=> Hash::make('staff'),
 
           ]);
 

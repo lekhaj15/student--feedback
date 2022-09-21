@@ -16,23 +16,22 @@ class StudentLoginController extends Controller
     // SUM: verify login credentials and jwt response
     public function postStudentLogin(Request $request): JsonResponse
     {
-//        $request->validate([
-//            'email' => ['required', 'string', 'email', 'max:255'],
-//            'password' => ['required', 'string', 'min:4'],
-//        ]);
 
         $student_email = $request->input('student_email');
         $student_password = $request->input('student_password');
         $remember_token = $request->input('remember_token');
 
         $student = StudentInformation::select(['id', 'student_email', 'student_password'])
-            ->where('email', '=', $student_email)->first();
+            ->where('student_email', '=', $student_email)->first();
 
         if (is_null($student)) {
             return response()->json(['errors' => 'invalid email'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $is_password_matched = Hash::check($student_password, $student->password);
+
+
+        $is_password_matched = Hash::check($student_password, $student->student_password);
+
         if ($is_password_matched == false) {
             return response()->json(['errors' => 'invalid password'], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
         }

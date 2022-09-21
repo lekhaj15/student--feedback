@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('student_information', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('institute_id');
+
             $table->integer('student_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
@@ -23,7 +25,7 @@ return new class extends Migration
             $table->string('student_phone');
             $table->string('student_password');
             $table->boolean('student_status');
-            $table->string('role');
+            $table->string('role')->default('student');
 
             $table->timestamps();
 
@@ -35,6 +37,11 @@ return new class extends Migration
             $table->foreign('subcategory_id')
                 ->references('id')
                 ->on(\App\Models\institute\grade\GradeSubCategory::getTableName())
+                ->onDelete('cascade');
+
+            $table->foreign('institute_id')
+                ->references('id')
+                ->on(\App\Models\institute\Auth\Institute::getTableName())
                 ->onDelete('cascade');
         });
     }

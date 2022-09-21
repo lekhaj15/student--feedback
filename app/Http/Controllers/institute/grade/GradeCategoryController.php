@@ -47,9 +47,11 @@ class GradeCategoryController extends Controller
         $request->validate([
         'category_name' => 'required|string|max:45',
     ]);
+        $institute_id = auth('institute')->id();
         $category_name = $request->input('category_name');
 
         $grade_category =GradeCategory::create([
+            'institute_id'=>$institute_id,
             'category_name' => $category_name,
         ]);
         return response()->json([

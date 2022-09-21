@@ -8,6 +8,7 @@ use App\Models\institute\grade\GradeSubCategory;
 use App\Models\institute\student\StudentInformation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentInformationController extends Controller
 {
@@ -27,6 +28,8 @@ class StudentInformationController extends Controller
     // SUM:
     public function postStudentInformationStore(Request $request): JsonResponse
     {
+        $institute_id = auth('institute')->id();
+
 
         $student_id = $request->input('student_id');
         $student_name = $request->input('student_name');
@@ -39,13 +42,15 @@ class StudentInformationController extends Controller
 
 
         $student = StudentInformation::create([
+            'institute_id'=>$institute_id,
+
 
             'student_id'=> $student_id,
             'student_name' => $student_name,
             'category_id'=> $category_id,
             'subcategory_id'=> $subcategory_id,
             'student_email'=> $student_email,
-            'student_password'=> "student",
+            'student_password'=> Hash::make('student'),
             'student_phone'=> $student_phone,
             'student_status'=> $student_status,
 

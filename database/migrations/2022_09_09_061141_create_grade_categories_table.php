@@ -15,9 +15,17 @@ return new class extends Migration
     {
         Schema::create('grade_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('institute_id');
             $table->string('category_name');
             $table->timestamps();
+
+            $table->foreign('institute_id')
+                ->references('id')
+                ->on(\App\Models\institute\Auth\Institute::getTableName())
+                ->onDelete('cascade');
+
         });
+
     }
 
     /**

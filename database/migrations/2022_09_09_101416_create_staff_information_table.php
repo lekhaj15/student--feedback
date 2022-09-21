@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('staff_information', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('institute_id');
+
             $table->integer('staff_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
@@ -23,7 +25,7 @@ return new class extends Migration
             $table->string('staff_phone');
             $table->string('staff_dob');
             $table->string('staff_password');
-            $table->string('role');
+            $table->string('role')->default('staff');
 
             $table->timestamps();
 
@@ -36,6 +38,11 @@ return new class extends Migration
             $table->foreign('subcategory_id')
                 ->references('id')
                 ->on(\App\Models\institute\grade\GradeSubCategory::getTableName())
+                ->onDelete('cascade');
+
+            $table->foreign('institute_id')
+                ->references('id')
+                ->on(\App\Models\institute\Auth\Institute::getTableName())
                 ->onDelete('cascade');
         });
     }

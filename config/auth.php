@@ -54,13 +54,13 @@ return [
         ],
         'student' => [
             'driver' => 'jwt',
-            'provider' => 'student',
+            'provider' => 'students',
              'hash' => false,
             ],
 
         'staff' => [
             'driver' => 'jwt',
-            'provider' => 'staff',
+            'provider' => 'staffs',
             'hash' => false,
         ],
 

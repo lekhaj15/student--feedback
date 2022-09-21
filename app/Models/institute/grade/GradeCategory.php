@@ -13,7 +13,7 @@ class GradeCategory extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','category_name',
+        'id','institute_id','category_name',
     ];
 
     protected $hidden = [

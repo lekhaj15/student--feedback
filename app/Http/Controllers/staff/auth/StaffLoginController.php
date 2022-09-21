@@ -27,13 +27,13 @@ class StaffLoginController extends  Controller
     $remember_token = $request->input('remember_token');
 
     $staff = StaffInformation::select(['id', 'staff_email', 'staff_password'])
-        ->where('email', '=', $staff_email)->first();
+        ->where('staff_email', '=', $staff_email)->first();
 
     if (is_null($staff)) {
         return response()->json(['errors' => 'invalid email'], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
-    $is_password_matched = Hash::check($staff_password, $staff->password);
+    $is_password_matched = Hash::check($staff_password, $staff->staff_password);
     if ($is_password_matched == false) {
         return response()->json(['errors' => 'invalid password'], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
     }

@@ -2,8 +2,14 @@
 
 namespace App\Models\institute\Auth;
 
+use App\Models\institute\grade\GradeCategory;
+use App\Models\institute\grade\GradeSubCategory;
+use App\Models\institute\staff\StaffInformation;
+use App\Models\institute\student\StudentInformation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
@@ -40,5 +46,24 @@ class Institute extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims(): array
     {
         return [];
+    }
+
+    public function gradeCategoryInformation(): HasOne
+    {
+        return $this->hasOne(GradeCategory::class, 'institute_id', 'id');
+    }
+    public function gradeSubCategoryInformation(): HasOne
+    {
+        return $this->hasOne(GradeSubCategory::class, 'institute_id', 'id');
+    }
+    public function studentInformation(): HasOne
+    {
+        return $this->hasOne
+        (StudentInformation::class, 'institute_id', 'id');
+    }
+    public function staffInformation(): HasMany
+    {
+        return $this->hasMany
+        (StaffInformation::class, 'institute_id', 'id');
     }
 }

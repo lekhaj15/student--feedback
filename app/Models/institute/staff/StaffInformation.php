@@ -18,12 +18,12 @@ class StaffInformation extends  Authenticatable implements JWTSubject
 //    protected $table = '';
 
     protected $fillable = [
-        'id','staff_id','category_id','subcategory_id','staff_name',
+        'id', 'institute_id','staff_id','category_id','subcategory_id','staff_name',
         'staff_email','staff_phone','staff_dob','staff_password','role',
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at','password', 'remember_token',
+        'password', 'remember_token',
     ];
 
     public function scopegetTableName(): string

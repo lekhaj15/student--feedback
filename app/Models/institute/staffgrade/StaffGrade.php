@@ -13,7 +13,7 @@ class StaffGrade extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','s_id','category_id','subcategory_id'
+        'id','institute_id','s_id','category_id','subcategory_id'
     ];
 
     protected $hidden = [

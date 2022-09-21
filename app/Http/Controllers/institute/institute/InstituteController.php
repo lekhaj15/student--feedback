@@ -7,6 +7,7 @@ use App\Models\institute\Auth\Institute;
 use App\Models\institute\grade\GradeCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class InstituteController extends Controller
@@ -23,6 +24,27 @@ class InstituteController extends Controller
             'institute' => $institute,
         ], JsonResponse::HTTP_OK);
     }
+    public function getInstituteInformationIndex(Request $request,$institute_id): JsonResponse
+    {
+        $institute=Institute::with('gradeCategoryInformation','gradeSubCategoryInformation','studentInformation','staffInformation')
+        ->orderBy('id','DESC')
+            ->where('id',$institute_id)
+        ->get();
+
+        $categorycount= DB::table('grade_categories')->where('institute_id', '=', $institute_id)->count();
+        $subcategorycount= DB::table('grade_sub_categories')->where('institute_id', '=', $institute_id)->count();
+ $studentcount= DB::table('student_information')->where('institute_id', '=', $institute_id)->count();
+$staffcount= DB::table('staff_information')->where('institute_id', '=', $institute_id)->count();
+
+        return response()->json([
+            'institute' => $institute,
+            'category_count'=>$categorycount,
+            'subcategory_count'=>$subcategorycount,
+            'studentcount'=>$studentcount,
+            'staffcount'=>$staffcount,
+
+        ], JsonResponse::HTTP_OK);
+    }
 
     // URI: /
     // SUM:
@@ -37,6 +59,7 @@ class InstituteController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
+
     // URI: /
     // SUM:
     public function postStore(Request $request): JsonResponse
@@ -44,10 +67,9 @@ class InstituteController extends Controller
        $full_name = $request->input('full_name');
        $email = $request->input('email');
        $role = $request->input('role');
-       $password = $request->input('password');
 
 
-        $institute =Institute::create([
+    $institute =Institute::create([
             'full_name' => $full_name,
             'email' => $email,
             'role' => $role,

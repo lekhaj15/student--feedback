@@ -14,9 +14,9 @@ Route::group([
     {
 
 
-        Route::post('/login', [StaffInformation::class, 'postStaffLogin']);
-        Route::post('/logout', [StaffInformation::class, 'postStaffLogout'])->middleware(['jwt', 'auth:staff']);
+        Route::post('/login', [\App\Http\Controllers\staff\auth\StaffLoginController::class, 'postStaffLogin']);
+        Route::post('/logout', [\App\Http\Controllers\staff\auth\StaffLoginController::class, 'postStaffLogout'])->middleware(['jwt', 'auth:staff']);
 
-        Route::get('/me', [StaffProfileController::class, 'getStaffIndex'])->middleware(['jwt', 'auth:staff']);
+        Route::get('/me', [\App\Http\Controllers\staff\auth\StaffProfileController::class, 'getStaffIndex'])->middleware(['jwt', 'auth:staff']);
 
     });

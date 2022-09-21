@@ -29,11 +29,14 @@ class GradeSubCategoryController extends Controller
     {
         $request->validate([
             'subcategory_name' => 'required|string|max:45',
+
         ]);
+        $institute_id = auth('institute')->id();
         $category_id = $request->input('category_id');
         $subcategory_name = $request->input('subcategory_name');
 
         $grade_category =GradeSubCategory::create([
+            'institute_id'=>$institute_id,
             'category_id' => $category_id,
             'subcategory_name' => $subcategory_name,
         ]);

@@ -25,11 +25,15 @@ class StaffGradeController extends Controller
     // SUM:
     public function poststaffgradeStore(Request $request): JsonResponse
     {
+        $institute_id = auth('institute')->id();
+
         $s_id = $request->input('s_id');
         $category_id = $request->input('category_id');
         $subcategory_id= $request->input('subcategory_id');
 
         $staff = StaffGrade::create([
+            'institute_id'=>$institute_id,
+
             's_id'=> $s_id,
             'category_id'=> $category_id,
             'subcategory_id'=> $subcategory_id,

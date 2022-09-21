@@ -18,7 +18,7 @@ class StudentInformation extends Authenticatable implements JWTSubject
 //    protected $table = '';
 
     protected $fillable = [
-        'id','student_id','category_id','subcategory_id','student_name','student_email',
+        'id','institute_id','student_id','category_id','subcategory_id','student_name','student_email',
         'student_phone','student_password','student_status','role',
     ];
 
