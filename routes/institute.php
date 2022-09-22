@@ -3,12 +3,17 @@
 use App\Http\Controllers\institute\Auth\InstituteLoginController;
 use App\Http\Controllers\institute\Auth\InstituteProfileController;
 use App\Http\Controllers\institute\Auth\InstituteRegisterController;
+use App\Http\Controllers\institute\Category\InstituteCategoryController;
 use App\Http\Controllers\institute\grade\GradeCategoryController;
 use App\Http\Controllers\institute\grade\GradeSubCategoryController;
 use App\Http\Controllers\institute\grade\StaffGradeController;
 use App\Http\Controllers\institute\grade\StaffInformationController;
 use App\Http\Controllers\institute\grade\StudentInformationController;
+use App\Http\Controllers\institute\InstituteDashboardController;
 use App\Http\Controllers\institute\questions\TopicController;
+use App\Http\Controllers\institute\Staff\InstituteStaffController;
+use App\Http\Controllers\institute\Student\InstituteStudentController;
+use App\Http\Controllers\institute\SubCategory\InstituteSubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +44,14 @@ Route::group([
 Route::group([
     'middleware' => ['jwt', 'auth:institute'], // /api/institute
 ], function () {
+
+    Route::get('/institute-dashboard', [InstituteDashboardController::class, 'getInstituteDashboardIndex']);
+    Route::get('/institute-staff', [InstituteStaffController::class, 'getInstituteStaffIndex']);
+    Route::get('/institute-student', [InstituteStudentController::class, 'getInstituteStudentIndex']);
+    Route::get('/institute-grade', [InstituteCategoryController::class, 'getInstituteGradeIndex']);
+    Route::get('/institute-subgrade', [InstituteSubCategoryController::class, 'getInstituteSubgradeIndex']);
+
+
 
     Route::post('/category/store', [GradeCategoryController::class, 'postGradeCategoryStore']);
     Route::get('/category/index', [GradeCategoryController::class, 'getGradeCategoryIndex']);

@@ -14,7 +14,10 @@ class GradeSubCategoryController extends Controller
     // SUM: get all the subcategory details
     public function getGradeSubCategoryIndex(Request $request): JsonResponse
     {
+        $institute_id=auth('institute')->id();
         $subcategory=GradeSubCategory::with(['subcategoryInformation'])
+            ->where('id','=', $institute_id )
+
             ->orderBy('category_id')
             ->paginate(15);
 

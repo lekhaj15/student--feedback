@@ -18,8 +18,11 @@ class GradeCategoryController extends Controller
     // SUM: get all the category details
     public function getGradeCategoryIndex(Request $request): JsonResponse
     {
+        $institute_id=auth('institute')->id();
         $category=GradeCategory::toBase()
-            ->orderBy('id',)
+            ->where('id','=', $institute_id )
+
+        ->orderBy('id',)
             ->paginate(15);
 
         return response()->json([
@@ -31,6 +34,7 @@ class GradeCategoryController extends Controller
     public function getGradeCategory(Request $request): JsonResponse
     {
         $categories=GradeCategory::toBase()
+
             ->orderBy('id', 'DESC')
             ->get();
 

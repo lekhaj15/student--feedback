@@ -15,7 +15,10 @@ class StaffInformationController extends Controller
     // SUM: get all staff details
     public function getStaffInformationIndex(Request $request): JsonResponse
     {
+        $institute_id=auth('institute')->id();
+
         $staffinformation=StaffInformation::with(['categoryInformation','subcategoryInformation'])
+            ->where('id','=', $institute_id )
             ->paginate(15);
 
         return response()->json([
@@ -42,8 +45,6 @@ class StaffInformationController extends Controller
 
         $staff =StaffInformation::create([
             'institute_id'=>$institute_id,
-
-
             'staff_id' => $staff_id,
             'category_id'=> $category_id,
             'subcategory_id'=> $subcategory_id,

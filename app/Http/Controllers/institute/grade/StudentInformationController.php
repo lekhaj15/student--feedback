@@ -16,7 +16,12 @@ class StudentInformationController extends Controller
     // SUM: get all the student information details
     public function getStudentInformationIndex(Request $request): JsonResponse
     {
+        $institute_id=auth('institute')->id();
+
+
         $studentinformation=StudentInformation::with(['categoryInformation','subcategoryInformation'])
+            ->where('id','=', $institute_id )
+
             ->paginate(15);
 
         return response()->json([
