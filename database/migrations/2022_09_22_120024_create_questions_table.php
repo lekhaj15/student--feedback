@@ -13,19 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('topics', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('institute_id');
-
-            $table->string('topic_name');
+            $table->string('question_name');
+            $table->string('option1');
+            $table->string('option2');
+            $table->string('option3');
+            $table->string('option4');
             $table->timestamps();
-
-            $table->foreign('institute_id')
-                ->references('id')
-                ->on(\App\Models\institute\Auth\Institute::getTableName())
-                ->onDelete('cascade');
         });
-
     }
 
     /**
@@ -35,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topics');
+        Schema::dropIfExists('questions');
     }
 };

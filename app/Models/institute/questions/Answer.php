@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Topic extends Model
+class Answer extends Model
 {
     use HasFactory;
 
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','topic_name'
+        'id','institute_id','student_id','question_id','answer_name',
     ];
 
     protected $hidden = [

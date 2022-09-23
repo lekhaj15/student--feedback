@@ -18,7 +18,7 @@ class StaffInformationController extends Controller
         $institute_id=auth('institute')->id();
 
         $staffinformation=StaffInformation::with(['categoryInformation','subcategoryInformation'])
-            ->where('id','=', $institute_id )
+            ->where('institute_id','=', $institute_id )
             ->paginate(15);
 
         return response()->json([

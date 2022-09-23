@@ -8,6 +8,7 @@ use App\Models\institute\grade\GradeSubCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+
 class GradeSubCategoryController extends Controller
 {
     // URI: /api/institute/subcategory/index
@@ -15,8 +16,10 @@ class GradeSubCategoryController extends Controller
     public function getGradeSubCategoryIndex(Request $request): JsonResponse
     {
         $institute_id=auth('institute')->id();
+//        dd($institute_id);
         $subcategory=GradeSubCategory::with(['subcategoryInformation'])
-            ->where('id','=', $institute_id )
+
+            ->where('institute_id','=', $institute_id )
 
             ->orderBy('category_id')
             ->paginate(15);

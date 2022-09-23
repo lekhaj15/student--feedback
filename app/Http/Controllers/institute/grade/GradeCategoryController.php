@@ -7,6 +7,7 @@ use App\Models\institute\grade\GradeCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+
 class GradeCategoryController extends Controller
 {
 
@@ -19,10 +20,11 @@ class GradeCategoryController extends Controller
     public function getGradeCategoryIndex(Request $request): JsonResponse
     {
         $institute_id=auth('institute')->id();
-        $category=GradeCategory::toBase()
-            ->where('id','=', $institute_id )
+//        dd($institute_id);
+        $category=GradeCategory::where('institute_id','=', $institute_id )
 
-        ->orderBy('id',)
+            ->orderBy('id','DESC')
+
             ->paginate(15);
 
         return response()->json([
@@ -33,8 +35,9 @@ class GradeCategoryController extends Controller
     // SUM: get all the category details
     public function getGradeCategory(Request $request): JsonResponse
     {
+        $institute_id=auth('institute')->id();
         $categories=GradeCategory::toBase()
-
+            ->where('institute_id','=', $institute_id )
             ->orderBy('id', 'DESC')
             ->get();
 

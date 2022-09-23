@@ -13,19 +13,29 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('topics', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('institute_id');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('question_id');
+            $table->string('answer_name');
 
-            $table->string('topic_name');
             $table->timestamps();
 
             $table->foreign('institute_id')
                 ->references('id')
                 ->on(\App\Models\institute\Auth\Institute::getTableName())
                 ->onDelete('cascade');
-        });
 
+            $table->foreign('student_id')
+                ->references('id')
+                ->on(\App\Models\institute\student\StudentInformation::getTableName())
+                ->onDelete('cascade');
+            $table->foreign('question_id')
+                ->references('id')
+                ->on(\App\Models\institute\questions\Question::getTableName())
+                ->onDelete('cascade');
+        });
     }
 
     /**
@@ -35,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topics');
+        Schema::dropIfExists('answers');
     }
 };

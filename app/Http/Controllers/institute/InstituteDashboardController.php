@@ -16,16 +16,17 @@ class InstituteDashboardController extends Controller
     {
         $institute_id=auth('institute')->id();
         $categorycount= DB::table('grade_categories')
-            ->where('id','=', $institute_id )
+            ->where('institute_id','=', $institute_id )
             ->count();
+
         $subcategorycount= DB::table('grade_sub_categories')
-            ->where('id','=', $institute_id )
+            ->where('institute_id','=', $institute_id )
             ->count();
         $studentcount= DB::table('student_information')
-            ->where('id','=', $institute_id )
+            ->where('institute_id','=', $institute_id )
             ->count();
         $staffcount= DB::table('staff_information')
-            ->where('id','=', $institute_id )
+            ->where('institute_id','=', $institute_id )
             ->count();
 
 

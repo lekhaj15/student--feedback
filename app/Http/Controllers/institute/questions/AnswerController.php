@@ -1,24 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\institute\SubCategory;
+namespace App\Http\Controllers\institute\questions;
 
 use App\Http\Controllers\Controller;
-use App\Models\institute\grade\GradeSubCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class InstituteSubCategoryController extends Controller
+class AnswerController extends Controller
 {
     // URI: /
     // SUM:
-    public function getInstituteSubgradeIndex(Request $request): JsonResponse
+    public function getIndex(Request $request): JsonResponse
     {
-       $subcategory = GradeSubCategory::toBase()
-           ->orderBy('id')
-           ->paginate(15);
-
         return response()->json([
-            'subcategory' => $subcategory,
+            '' => null,
         ], JsonResponse::HTTP_OK);
     }
 

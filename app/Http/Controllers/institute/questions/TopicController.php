@@ -16,9 +16,26 @@ class TopicController extends Controller
     // SUM:
     public function getquestionstopicIndex(Request $request): JsonResponse
     {
-        $topic=Topic::toBase()
-            ->get();
+        $institute_id=auth('institute')->id();
+//        dd($institute_id);
+        $topic=Topic::where('institute_id','=', $institute_id )
 
+            ->orderBy('id','DESC')
+
+            ->paginate(15);
+        return response()->json([
+            'topic' => $topic,
+        ], Response::HTTP_OK);
+
+    }public function gettopic(Request $request): JsonResponse
+    {
+        $institute_id=auth('institute')->id();
+//        dd($institute_id);
+        $topic=Topic::where('institute_id','=', $institute_id )
+
+            ->orderBy('id','DESC')
+
+            ->get();
         return response()->json([
             'topic' => $topic,
         ], Response::HTTP_OK);
@@ -31,10 +48,14 @@ class TopicController extends Controller
         $request->validate([
             'topic_name' => 'required|string|max:45',
         ]);
+        $institute_id = auth('institute')->id();
+
         $topic_name = $request->input('topic_name');
 
         $topic =Topic::create([
             'topic_name' => $topic_name,
+            'institute_id'=>$institute_id,
+
         ]);
         return response()->json([
             'topic' => $topic,
