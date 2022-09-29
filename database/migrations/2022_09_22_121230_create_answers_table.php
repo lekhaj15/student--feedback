@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('institute_id');
             $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('question_id');
+            $table->unsignedBigInteger('question_id');$table->unsignedBigInteger('topic_id');
             $table->string('answer_name');
 
             $table->timestamps();
@@ -34,6 +34,11 @@ return new class extends Migration
             $table->foreign('question_id')
                 ->references('id')
                 ->on(\App\Models\institute\questions\Question::getTableName())
+                ->onDelete('cascade');
+
+            $table->foreign('topic_id')
+                ->references('id')
+                ->on(\App\Models\institute\questions\Topic::getTableName())
                 ->onDelete('cascade');
         });
     }

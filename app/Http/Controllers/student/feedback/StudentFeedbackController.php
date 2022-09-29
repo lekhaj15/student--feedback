@@ -58,21 +58,21 @@ class StudentFeedbackController extends Controller
     // SUM:
     public function postFeedbackStore (Request $request ): JsonResponse
     {
-        $selected_answers = $request->input('form_answer');
-        dd($selected_answers);
-//        $stud_id = auth('student')->id();
-//        $student_information=StudentInformation::where('id',$stud_id)->first();
+        $topic_id = $request->input('topic_id');
+        $selected_answers = $request->input('answers');
 
+        $stud_id = auth('student')->id();
+        $student_information=StudentInformation::where('id',$stud_id)->first();
 
-
-//        foreach ($selected_answers as $sc) {
-//            $answers = Answer::create([
-//                'institute_id' => $student_information->institute_id,
-//                'student_id' => $stud_id,
-//                'question_id' => $sc->question_id,
-//                'answer_name' => $sc->answer,
-//            ]);
-//        }
+        foreach ($selected_answers as $sc) {
+            $answers = Answer::create([
+                'institute_id' => $student_information->institute_id,
+                'student_id' => $stud_id,
+                'topic_id' => $topic_id,
+                'question_id' => $sc['question_id'],
+                'answer_name' => $sc['answer'],
+            ]);
+        }
 
         return response()->json([
             'answers' => 'success',
@@ -80,7 +80,7 @@ class StudentFeedbackController extends Controller
 
     }
 
-        // URI: /
+    // URI: /
     // SUM:
     public function getShow($id): JsonResponse
     {
