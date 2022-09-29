@@ -27,7 +27,8 @@ class TopicController extends Controller
             'topic' => $topic,
         ], Response::HTTP_OK);
 
-    }public function gettopic(Request $request): JsonResponse
+    }
+    public function gettopic(Request $request): JsonResponse
     {
         $institute_id=auth('institute')->id();
 //        dd($institute_id);

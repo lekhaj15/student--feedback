@@ -41,7 +41,7 @@ class QuestionPivot extends Model
     {
         return $this->hasOne(GradeSubCategory::class, 'id', 'subcategory_id');
     }
-    public function topicinformation(): HasOne
+    public function topicInformation(): HasOne
     {
 
         return $this->hasOne(Topic::class, 'id', 'topic_id');

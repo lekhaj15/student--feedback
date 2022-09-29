@@ -86,8 +86,21 @@ class QuestionController extends Controller
     // SUM:
     public function getQuestionShow($id): JsonResponse
     {
-        $question= Question::where('id', '=',$id)
+
+//        $question= QuestionPivot::with('questionInformation','categoryInformation','subCategoryInformation','topicInformation')
+
+           $question=   DB::table('question_pivots')
+                ->select('question_pivots.id','question_pivots.created_at','questions.question_name','questions.option1','questions.option2','questions.option3','questions.option4',
+                    'grade_categories.category_name','grade_sub_categories.subcategory_name','topics.topic_name')
+                ->leftJoin('questions', 'question_pivots.question_id', '=', 'questions.id')
+                ->leftJoin('grade_categories', 'question_pivots.category_id', '=', 'grade_categories.id')
+                ->leftJoin('grade_sub_categories', 'question_pivots.subcategory_id', '=', 'grade_sub_categories.id')
+                ->leftJoin('institutes', 'question_pivots.institute_id', '=', 'institutes.id')
+                ->leftJoin('topics', 'question_pivots.topic_id', '=', 'topics.id')
+               ->where('question_pivots.id', '=',$id)
+
             ->first();
+
 
         return response()->json([
             'question' => $question,
@@ -127,8 +140,10 @@ class QuestionController extends Controller
 
     // URI: /
     // SUM:
-    public function deleteQuestionDestroy($id): JsonResponse
-    {D:\GitHub\student--feedback\app\Http\Controllers\institute\questions\QuestionController.php
+    public function deleteQuestionDestroy($id)
+    {
+        $questionpivot=QuestionPivot::where('id','=',$id)
+            ->first();
         $question=Question::where('id','=',$questionpivot->question_id)->delete();
       QuestionPivot::where('id','=',$id)
             ->delete();
