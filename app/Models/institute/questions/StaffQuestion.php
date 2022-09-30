@@ -26,6 +26,6 @@ class StaffQuestion extends Model
     }
     public function staffquestionInformation(): HasMany
     {
-        return $this->hasMany(StaffQuestionPivot::class, 'staffquestion_id', 'id');
+        return $this->hasMany(StaffQuestionPivot::class, 'question_id', 'id');
     }
 }

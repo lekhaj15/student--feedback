@@ -12,6 +12,8 @@ use App\Http\Controllers\institute\grade\StudentInformationController;
 use App\Http\Controllers\institute\InstituteDashboardController;
 use App\Http\Controllers\institute\questions\QuestionController;
 use App\Http\Controllers\institute\questions\QuestionPivotController;
+use App\Http\Controllers\institute\questions\StaffQuestionsController;
+use App\Http\Controllers\institute\questions\StaffQuestionsPivotController;
 use App\Http\Controllers\institute\questions\TopicController;
 use App\Http\Controllers\institute\Staff\InstituteStaffController;
 use App\Http\Controllers\institute\Student\InstituteStudentController;
@@ -111,6 +113,19 @@ Route::group([
     Route::get('/pivot/show/{id}', [QuestionPivotController::class, 'getQuestionPivotShow']);
     Route::delete('/pivot/delete/{id}', [QuestionPivotController::class, 'deleteQuestionPivotDestroy']);
     Route::patch('/pivot/update/{id}', [QuestionPivotController::class, 'patchQuestionPivotUpdate']);
+
+    Route::post('/staffquestion/store', [StaffQuestionsController::class, 'postStaffQuestionStore']);
+    Route::get('/staffquestion/index', [StaffQuestionsController::class, 'getstaffquestionIndex']);
+    Route::get('/staffquestion/show/{id}', [StaffQuestionsController::class, 'getstaffquestionShow']);
+    Route::delete('/staffquestion/delete/{id}', [StaffQuestionsController::class, 'deletestaffQuestionDestroy']);
+    Route::patch('/staffquestion/update/{id}', [StaffQuestionsController::class, 'patchStaffQuestionUpdate']);
+
+    Route::post('/staffpivot/store', [StaffQuestionsPivotController::class, 'postQuestionPivotStore']);
+    Route::get('/staffpivot/index', [StaffQuestionsPivotController::class, 'getstaffquestionIndex']);
+    Route::get('/staffpivot/show/{id}', [StaffQuestionsPivotController::class, 'getQuestionPivotShow']);
+    Route::delete('/staffpivot/delete/{id}', [StaffQuestionsPivotController::class, 'deleteQuestionPivotDestroy']);
+    Route::patch('/staffpivot/update/{id}', [StaffQuestionsPivotController::class, 'patchQuestionPivotUpdate']);
+
 
 
 });
