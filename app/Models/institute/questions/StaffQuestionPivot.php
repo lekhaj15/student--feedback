@@ -17,7 +17,7 @@ class StaffQuestionPivot extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','category_id','subcategory_id','topic_id','question_id',
+        'id','institute_id','category_id','subcategory_id','topic_id','staffquestion_id',
     ];
 
     protected $hidden = [
