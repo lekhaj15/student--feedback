@@ -28,7 +28,7 @@ class StaffQuestionPivot extends Model
     {
         return $this->getTable();
     }
-    public function questionInformation(): HasMany
+    public function staffquestionInformation(): HasMany
     {
         return $this->hasMany(StaffQuestion::class, 'id', 'question_id');
     }
