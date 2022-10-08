@@ -28,7 +28,7 @@ Route::group([
     Route::get('/feedback/{topic_id}', [StaffFeedbackController::class, 'getStaffFeedbackIndex']);
     Route::get('/topic', [StaffFeedbackController::class, 'getTopicIndex']);
     Route::get('/profile', [\App\Http\Controllers\staff\Profile\StaffProfileController::class, 'getStaffProfileIndex']);
-    Route::post('/feedback/store', [StaffFeedbackController::class, 'postFeedbackStore']);
+    Route::post('/feedback/store', [StaffFeedbackController::class, 'poststafffeedbackStore']);
 
 
 

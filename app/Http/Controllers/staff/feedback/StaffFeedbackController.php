@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\staff\feedback;
 
 use App\Http\Controllers\Controller;
+use App\Models\institute\questions\Answer;
 use App\Models\institute\staff\StaffInformation;
 use App\Models\institute\student\StudentInformation;
 use Illuminate\Http\JsonResponse;
@@ -42,11 +43,23 @@ class StaffFeedbackController extends Controller
 
     // URI: /
     // SUM:
-    public function postStore(Request $request): JsonResponse
+    public function poststafffeedbackStore(Request $request): JsonResponse
     {
-        return response()->json([
-            '' => null,
-        ], JsonResponse::HTTP_CREATED);
+        $topic_id = $request->input('topic_id');
+        $selected_answers = $request->input('answers');
+
+        $staffs_id = auth('staff')->id();
+        $staff_information = StaffInformation::where('id', $staffs_id)->first();
+
+        foreach ($selected_answers as $sc) {
+            $answers = Answer::create([
+                'institute_id' => $staff_information->institute_id,
+                'staff_id' => $staffs_id,
+                'topic_id' => $topic_id,
+                'question_id' => $sc['question_id'],
+                'answer_name' => $sc['answer'],
+            ]);
+        }
     }
 
     // URI: /

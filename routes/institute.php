@@ -114,7 +114,7 @@ Route::group([
     Route::delete('/pivot/delete/{id}', [QuestionPivotController::class, 'deleteQuestionPivotDestroy']);
     Route::patch('/pivot/update/{id}', [QuestionPivotController::class, 'patchQuestionPivotUpdate']);
 
-    Route::post('/staffquestion/store', [StaffQuestionsController::class, 'postStaffQuestionStore']);
+    Route::post('/staff-question/store', [StaffQuestionsController::class, 'postStaffQuestionStore']);
     Route::get('/staffquestion/index', [StaffQuestionsController::class, 'getstaffquestionIndex']);
     Route::get('/staffquestion/show/{id}', [StaffQuestionsController::class, 'getstaffquestionShow']);
     Route::delete('/staffquestion/delete/{id}', [StaffQuestionsController::class, 'deletestaffQuestionDestroy']);
