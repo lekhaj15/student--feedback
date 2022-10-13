@@ -33,7 +33,8 @@ class TopicController extends Controller
         $institute_id=auth('institute')->id();
 //        dd($institute_id);
         $topic=Topic::where('institute_id','=', $institute_id )
-
+            ->where('topic_role','student-staff')
+            ->orwhere('topic_role','student')
             ->orderBy('id','DESC')
 
             ->get();

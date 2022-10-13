@@ -113,25 +113,42 @@ class QuestionController extends Controller
     // SUM:
     public function patchQuestionUpdate(Request $request, $id): JsonResponse
     {
+        $institute_id = auth('institute')->id();
+
         $question_name = $request->input('question_name');
         $option1 = $request->input('option1');
         $option2 = $request->input('option2');
         $option3 = $request->input('option3');
         $option4 = $request->input('option4');
 
-
+        $category_id = $request->input('category_id');
+        $subcategory_id = $request->input('subcategory_id');
+        $topic_id = $request->input('topic_id');
         Question::toBase()->where([
             ['id','=',$id],
         ])
 
             ->update([
-                'topic_name'=> $question_name,
+                'question_name'=> $question_name,
                 'option1' => $option1,
                 'option2' => $option2,
                 'option3' => $option3,
                 'option4' => $option4,
 
             ]);
+        QuestionPivot::toBase()->where([
+            ['question_id','=',$id],
+        ])
+
+            ->update([
+                'category_id' => $category_id,
+                'institute_id'=>$institute_id,
+                'subcategory_id' => $subcategory_id,
+                'topic_id' => $topic_id,
+
+            ]);
+
+
 
         return response()->json([
             'success' => 'update success'  ,
