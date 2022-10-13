@@ -13,18 +13,25 @@ class StaffProfileController extends Controller
     // SUM:
     public function getStaffProfileIndex(Request $request): JsonResponse
     {
-        $staffs_id=auth('staff')->id();
-
-        $staff_information=DB::table('staff_information')
+       $staffs_id=auth('staff')->id();
+      $staff_information=DB::table('staff_information')
             ->select('staff_information.id','staff_information.created_at','staff_information.staff_name','staff_information.staff_id',
-                'staff_information.staff_email','staff_information.staff_phone','staff_information.staff_dob',
+               'staff_information.staff_email','staff_information.staff_phone','staff_information.staff_dob',
                 'grade_categories.category_name','grade_sub_categories.subcategory_name','institutes.full_name')
 
-            ->leftJoin('grade_categories', 'student_information.category_id', '=', 'grade_categories.id')
-            ->leftJoin('grade_sub_categories', 'student_information.subcategory_id', '=', 'grade_sub_categories.id')
-            ->leftJoin('institutes', 'student_information.institute_id', '=', 'institutes.id')
-            ->where('staff_information.id',$staffs_id)
+           ->leftJoin('grade_categories', 'staff_information.category_id', '=', 'grade_categories.id')
+           ->leftJoin('grade_sub_categories', 'staff_information.subcategory_id', '=', 'grade_sub_categories.id')
+            ->leftJoin('institutes', 'staff_information.institute_id', '=', 'institutes.id')
+         ->where('staff_information.id',$staffs_id)
             ->first();
+
+        return response()->json([
+            'profile' => $staff_information,
+        ], JsonResponse::HTTP_OK);
+    }
+    public function getTestIndex(Request $request): JsonResponse
+    {$staff_information="asds";
+
 
         return response()->json([
             'profile' => $staff_information,

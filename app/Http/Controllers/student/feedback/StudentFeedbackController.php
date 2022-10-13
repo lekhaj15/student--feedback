@@ -47,7 +47,25 @@ class StudentFeedbackController extends Controller
         $stud_id=auth('student')->id();
 
         $student_information=StudentInformation::where('id',$stud_id)->first();
-        $topic= Topic::where('institute_id',$student_information->institute_id)->get();
+        $topic= Topic::where('institute_id',$student_information->institute_id)
+            ->where('topic_role','student')->get();
+
+        return response()->json([
+            'topic' =>$topic ,
+        ], JsonResponse::HTTP_OK);
+    }
+
+    public function getStaffTopicIndex(Request $request): JsonResponse
+    {
+
+        $stud_id=auth('student')->id();
+
+        $student_information=StudentInformation::where('id',$stud_id)->first();
+        $topic= Topic::where('institute_id',$student_information->institute_id)
+            ->where('topic_role','student-staff')
+            ->where('category_id',$student_information->category_id)
+            ->where('subcategory_id',$student_information->subcategory_id)
+            ->get();
 
         return response()->json([
             'topic' =>$topic ,

@@ -98,6 +98,7 @@ Route::group([
     Route::post('/topic/store', [TopicController::class, 'postquestionstopicStore']);
     Route::get('/topic/index', [TopicController::class, 'getquestionstopicIndex']);
     Route::get('/topic', [TopicController::class, 'gettopic']);
+    Route::get('/topic/{category_id}/{subcategory_id}', [TopicController::class, 'getstafftopic']);
     Route::get('/topic/show/{id}', [TopicController::class, 'getquestionstopicShow']);
     Route::delete('/topic/delete/{id}', [TopicController::class, 'deletequestionstopicDestroy']);
     Route::patch('/topic/update/{id}', [TopicController::class, 'patchquestionstopicUpdate']);

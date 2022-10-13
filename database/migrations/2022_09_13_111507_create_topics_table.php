@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('institute_id');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('subcategory_id')->nullable();
 
             $table->string('topic_name');
+            $table->string('topic_role');
+
             $table->timestamps();
 
             $table->foreign('institute_id')

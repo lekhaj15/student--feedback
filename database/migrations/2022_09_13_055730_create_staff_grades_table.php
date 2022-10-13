@@ -20,6 +20,8 @@ return new class extends Migration {
                 $table->unsignedBigInteger('s_id');
                 $table->unsignedBigInteger('category_id');
                 $table->unsignedBigInteger('subcategory_id');
+                $table->string('staff_name');
+
                 $table->timestamps();
 
                 $table->foreign('category_id',)
