@@ -41,7 +41,7 @@ return new class extends Migration
                 ->references('id')
                 ->on(\App\Models\institute\questions\Topic::getTableName())
                 ->onDelete('cascade');
-            $table->foreign('staffquestion_id')
+            $table->foreign('question_id')
                 ->references('id')
                 ->on(\App\Models\institute\questions\StaffQuestion::getTableName())
                 ->onDelete('cascade');

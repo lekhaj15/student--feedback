@@ -129,7 +129,7 @@ class QuestionController extends Controller
                 'option1' => $option1,
                 'option2' => $option2,
                 'option3' => $option3,
-                'option3' => $option3,
+                'option4' => $option4,
 
             ]);
 

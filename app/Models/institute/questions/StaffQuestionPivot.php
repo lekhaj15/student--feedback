@@ -17,7 +17,7 @@ class StaffQuestionPivot extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','category_id','subcategory_id','topic_id','staffquestion_id',
+        'id','institute_id','category_id','subcategory_id','topic_id','question_id',
     ];
 
     protected $hidden = [
@@ -30,7 +30,7 @@ class StaffQuestionPivot extends Model
     }
     public function staffquestionInformation(): HasMany
     {
-        return $this->hasMany(StaffQuestion::class, 'id', 'staffquestion_id');
+        return $this->hasMany(StaffQuestion::class, 'id', 'question_id');
     }
     public function categoryInformation(): HasOne
     {
