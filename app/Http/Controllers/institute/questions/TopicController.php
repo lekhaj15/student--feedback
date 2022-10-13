@@ -42,6 +42,22 @@ class TopicController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function getstafftopic(Request $request,int $category_id,int $subcategory_id): JsonResponse
+    {
+        $institute_id=auth('institute')->id();
+//        dd($institute_id);
+        $topic=Topic::where('institute_id','=', $institute_id )
+            ->where('topic_role','staff')
+            ->where('category_id',$category_id)
+            ->where('subcategory_id',$subcategory_id)
+            ->orderBy('id','DESC')
+
+            ->get();
+        return response()->json([
+            'topic' => $topic,
+        ], Response::HTTP_OK);
+    }
+
     // URI: /
     // SUM:
     public function postquestionstopicStore(Request $request): JsonResponse
@@ -52,9 +68,17 @@ class TopicController extends Controller
         $institute_id = auth('institute')->id();
 
         $topic_name = $request->input('topic_name');
+        $topic_role = $request->input('topic_role');
+        $category_id = $request->input('category_id');
+        $subcategory_id = $request->input('subcategory_id');
+
+
 
         $topic =Topic::create([
             'topic_name' => $topic_name,
+            'topic_role' => $topic_role,
+            'category_id' => $category_id,
+            'subcategory_id' => $subcategory_id,
             'institute_id'=>$institute_id,
 
         ]);
@@ -82,14 +106,20 @@ class TopicController extends Controller
     public function patchquestionstopicUpdate(Request $request, $id): JsonResponse
     {
 
+            $topic_role = $request->input('topic_role');
             $topic_name = $request->input('topic_name');
+        $category_id = $request->input('category_id');
+        $subcategory_id = $request->input('subcategory_id');
 
         Topic::toBase()->where([
                 ['id','=',$id],
             ])
 
             ->update([
-                'topic_name'=> $topic_name
+                'topic_role'=> $topic_role,
+                'topic_name'=> $topic_name,
+                'category_id' => $category_id,
+                'subcategory_id' => $subcategory_id,
             ]);
 
         return response()->json([

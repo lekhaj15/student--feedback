@@ -13,7 +13,7 @@ class Topic extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','topic_name'
+        'id','institute_id','topic_name','topic_role','category_id','subcategory_id'
     ];
 
     protected $hidden = [

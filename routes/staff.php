@@ -14,22 +14,22 @@ Route::group([
     function()
     {
 
-
         Route::post('/login', [\App\Http\Controllers\staff\auth\StaffLoginController::class, 'postStaffLogin']);
         Route::post('/logout', [\App\Http\Controllers\staff\auth\StaffLoginController::class, 'postStaffLogout'])->middleware(['jwt', 'auth:staff']);
 
         Route::get('/me', [\App\Http\Controllers\staff\auth\StaffProfileController::class, 'getStaffIndex'])->middleware(['jwt', 'auth:staff']);
 
     });
+
 Route::group([
     'middleware' => ['jwt', 'auth:staff'], // /api/institute
 ], function () {
 
     Route::get('/feedback/{topic_id}', [StaffFeedbackController::class, 'getStaffFeedbackIndex']);
-    Route::get('/topic', [StaffFeedbackController::class, 'getTopicIndex']);
+    Route::get('/topic', [StaffFeedbackController::class, 'getStaffTopicIndex']);
     Route::get('/profile', [\App\Http\Controllers\staff\Profile\StaffProfileController::class, 'getStaffProfileIndex']);
     Route::post('/feedback/store', [StaffFeedbackController::class, 'poststafffeedbackStore']);
-
-
+    Route::get('/test', [\App\Http\Controllers\staff\Profile\StaffProfileController::class, 'getTestIndex']);
 
 });
+
