@@ -14,7 +14,7 @@ class AdminStudentController extends Controller
     // SUM:
     public function getAdminStudentIndex(Request $request): JsonResponse
     {
-        $student=StudentInformation::toBase()
+        $student=StudentInformation::with('instituteInformation')
             ->orderBy('id',)
             ->paginate(15);
 
