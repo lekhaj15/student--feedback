@@ -2,6 +2,7 @@
 
 namespace App\Models\institute\student;
 
+use App\Models\institute\Auth\Institute;
 use App\Models\institute\grade\GradeCategory;
 use App\Models\institute\grade\GradeSubCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +35,10 @@ class StudentInformation extends Authenticatable implements JWTSubject
     public function categoryInformation(): HasOne
     {
         return $this->hasOne(GradeCategory::class, 'id', 'category_id');
+    }
+    public function instituteInformation(): HasOne
+    {
+        return $this->hasOne(Institute::class, 'id', 'institute_id');
     }
 
     public function subcategoryInformation(): HasOne
