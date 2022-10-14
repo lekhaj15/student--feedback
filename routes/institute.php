@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\institute\answers\StudentAnswerController;
 use App\Http\Controllers\institute\Auth\InstituteLoginController;
 use App\Http\Controllers\institute\Auth\InstituteProfileController;
 use App\Http\Controllers\institute\Auth\InstituteRegisterController;
@@ -99,12 +100,13 @@ Route::group([
     Route::get('/topic/index', [TopicController::class, 'getquestionstopicIndex']);
     Route::get('/topic', [TopicController::class, 'gettopic']);
     Route::get('/topic/{category_id}/{subcategory_id}', [TopicController::class, 'getstafftopic']);
-    Route::get('/topic/show/{id}', [TopicController::class, 'getquestionstopicShow']);
+    Route::get('/topic/show/{id}/edit', [TopicController::class, 'getquestionstopicShow']);
     Route::delete('/topic/delete/{id}', [TopicController::class, 'deletequestionstopicDestroy']);
     Route::patch('/topic/update/{id}', [TopicController::class, 'patchquestionstopicUpdate']);
 
     Route::post('/question/store', [QuestionController::class, 'postQuestionStore']);
-    Route::get('/question/index', [QuestionController::class, 'getQuestionIndex']);
+    Route::get('/question/index/{subcategory_id}', [QuestionController::class, 'getQuestionIndex']);
+//    Route::get('/question/index', [QuestionController::class, 'getQuestionIndex']);
     Route::get('/question/show/{id}', [QuestionController::class, 'getQuestionShow']);
     Route::delete('/question/delete/{id}', [QuestionController::class, 'deleteQuestionDestroy']);
     Route::patch('/question/update/{id}', [QuestionController::class, 'patchQuestionUpdate']);
@@ -116,10 +118,11 @@ Route::group([
     Route::patch('/pivot/update/{id}', [QuestionPivotController::class, 'patchQuestionPivotUpdate']);
 
     Route::post('/staff-question/store', [StaffQuestionsController::class, 'postStaffQuestionStore']);
-    Route::get('/staffquestion/index', [StaffQuestionsController::class, 'getstaffquestionIndex']);
-    Route::get('/staffquestion/show/{id}', [StaffQuestionsController::class, 'getstaffquestionShow']);
-    Route::delete('/staffquestion/delete/{id}', [StaffQuestionsController::class, 'deletestaffQuestionDestroy']);
-    Route::patch('/staffquestion/update/{id}', [StaffQuestionsController::class, 'patchStaffQuestionUpdate']);
+    Route::get('/staff-question/index/{subcategory_id}', [StaffQuestionsController::class, 'getstaffquestionIndex']);
+    //Route::get('/staffquestion/index', [StaffQuestionsController::class, 'getstaffquestionIndex']);
+    Route::get('/staff-question/show/{id}', [StaffQuestionsController::class, 'getstaffquestionShow']);
+    Route::delete('/staff-question/delete/{id}', [StaffQuestionsController::class, 'deletestaffQuestionDestroy']);
+    Route::patch('/staff-question/update/{id}', [StaffQuestionsController::class, 'patchStaffQuestionUpdate']);
 
     Route::post('/staffpivot/store', [StaffQuestionsPivotController::class, 'postQuestionPivotStore']);
     Route::get('/staffpivot/index', [StaffQuestionsPivotController::class, 'getstaffquestionIndex']);
@@ -127,6 +130,8 @@ Route::group([
     Route::delete('/staffpivot/delete/{id}', [StaffQuestionsPivotController::class, 'deleteQuestionPivotDestroy']);
     Route::patch('/staffpivot/update/{id}', [StaffQuestionsPivotController::class, 'patchQuestionPivotUpdate']);
 
+    Route::get('/student-answers/index/{student_id}', [StudentAnswerController::class, 'getStudentAnswerIndex']);
+    Route::get('/staff-answers/index/{student_id}', [\App\Http\Controllers\institute\answers\StaffAnswerController::class, 'getStaffAnswerIndex']);
 
 
 });

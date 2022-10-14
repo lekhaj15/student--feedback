@@ -13,12 +13,10 @@ class GradeCategory extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','category_name',
+        'id','institute_id','category_name', 'created_at', 'updated_at',
     ];
 
-    protected $hidden = [
-        'created_at', 'updated_at',
-    ];
+
 
     public function scopegetTableName(): string
     {

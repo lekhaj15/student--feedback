@@ -13,12 +13,10 @@ class Topic extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','topic_name','topic_role','category_id','subcategory_id'
+        'id','institute_id','topic_name','topic_role','category_id','subcategory_id', 'created_at', 'updated_at',
     ];
 
-    protected $hidden = [
-        'created_at', 'updated_at',
-    ];
+
 
     public function scopegetTableName(): string
     {

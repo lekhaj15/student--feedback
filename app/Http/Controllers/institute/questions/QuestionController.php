@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\institute\questions;
 
 use App\Http\Controllers\Controller;
+use App\Models\institute\grade\GradeSubCategory;
 use App\Models\institute\questions\Question;
 use App\Models\institute\questions\QuestionPivot;
 use App\Models\institute\questions\Topic;
@@ -15,16 +16,11 @@ class QuestionController extends Controller
 {
     // URI: /
     // SUM:
-    public function getQuestionIndex(Request $request): JsonResponse
+    public function getQuestionIndex(Request $request,int $subcategory_id): JsonResponse
     {
 
         $institute_id=auth('institute')->id();
-//        dd($institute_id);
-//        $question=QuestionPivot::with('questionInformation','categoryInformation','subCategoryInformation','topicinformation')
-//
-//            ->orderBy('id','DESC')
-//
-//            ->paginate(15);
+        $subcategory=GradeSubCategory::where('id',$subcategory_id)->first();
 
         $question = DB::table('question_pivots')
             ->select('question_pivots.id','question_pivots.created_at','questions.question_name','questions.option1','questions.option2','questions.option3','questions.option4',
@@ -35,6 +31,8 @@ class QuestionController extends Controller
             ->leftJoin('institutes', 'question_pivots.institute_id', '=', 'institutes.id')
             ->leftJoin('topics', 'question_pivots.topic_id', '=', 'topics.id')
             ->where('question_pivots.institute_id',$institute_id)
+            ->where('question_pivots.subcategory_id',$subcategory_id)
+            ->where('question_pivots.category_id',$subcategory->category_id)
             ->paginate(15);
 
         return response()->json([

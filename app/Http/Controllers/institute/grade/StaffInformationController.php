@@ -22,7 +22,7 @@ class StaffInformationController extends Controller
             ->paginate(15);
 
         return response()->json([
-            'staffinformation' => $staffinformation,
+            'staff_information' => $staffinformation,
         ], JsonResponse::HTTP_OK);
     }
 

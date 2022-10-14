@@ -14,7 +14,7 @@ class GradeSubCategory extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','category_id','subcategory_name'
+        'id','institute_id','category_id','subcategory_name','created_at', 'updated_at',
     ];
 
 //    protected $hidden = [
