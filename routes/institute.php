@@ -68,6 +68,7 @@ Route::group([
 
     Route::delete('staff/delete/{id}', [StaffInformationController::class, 'deleteStaffInformation']);
     Route::get('/staff/index', [StaffInformationController::class, 'getStaffInformationIndex']);
+    Route::get('/staff/index', [StaffInformationController::class, 'getStaffInformationIndex']);
     Route::post('/staff/store', [StaffInformationController::class, 'postStaffInformationStore']);
     Route::get('/staff/show/{id}/edit', [StaffInformationController::class, 'getStaffInformationShow']);
     Route::patch('/staff/update/{id}', [StaffInformationController::class, 'patchStaffInformationUpdate']);

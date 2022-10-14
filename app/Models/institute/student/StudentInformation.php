@@ -20,11 +20,11 @@ class StudentInformation extends Authenticatable implements JWTSubject
 
     protected $fillable = [
         'id','institute_id','student_id','category_id','subcategory_id','student_name','student_email',
-        'student_phone','student_password','student_status','role',
+        'student_phone','student_password','student_status','role','created_at',
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at','password', 'remember_token',
+        'updated_at','password', 'remember_token',
     ];
 
     public function scopegetTableName(): string

@@ -19,7 +19,7 @@ class StaffInformation extends  Authenticatable implements JWTSubject
 
     protected $fillable = [
         'id', 'institute_id','staff_id','category_id','subcategory_id','staff_name',
-        'staff_email','staff_phone','staff_dob','staff_password','role',
+        'staff_email','staff_phone','staff_dob','staff_password','role','created_at',
     ];
 
     protected $hidden = [
