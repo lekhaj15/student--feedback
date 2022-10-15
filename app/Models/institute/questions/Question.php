@@ -18,12 +18,12 @@ class Question extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','question_name','option1','option2','option3','option4',
+        'id','question_name','option1','option2','option3','option4', 'created_at', 'updated_at',
     ];
 
-    protected $hidden = [
-        'created_at', 'updated_at',
-    ];
+//    protected $hidden = [
+//        'created_at', 'updated_at',
+//    ];
 
     public function scopegetTableName(): string
     {
