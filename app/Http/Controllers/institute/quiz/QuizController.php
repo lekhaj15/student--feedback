@@ -80,7 +80,7 @@ class QuizController extends Controller
 
     // URI: /
     // SUM:
-    public function getquizShow($id): JsonResponse
+    public function getQuizShow($id): JsonResponse
     {
         $quiz=   DB::table('quiz_pivots')
             ->select('quiz_pivots.id','quiz_pivots.created_at','questions.question_name','questions.option1','questions.option2','questions.option3','questions.option4',
@@ -102,7 +102,7 @@ class QuizController extends Controller
 
     // URI: /
     // SUM:
-    public function patchquizUpdate(Request $request, $id): JsonResponse
+    public function patchQuizUpdate(Request $request, $id): JsonResponse
     {
         $institute_id = auth('institute')->id();
 

@@ -52,7 +52,7 @@ class SubjectController extends Controller
         ], JsonResponse::HTTP_CREATED);
     }
 
-    public function getsubject(Request $request, $category_id, $subcategory_id): JsonResponse
+    public function getSubject(Request $request, $category_id, $subcategory_id): JsonResponse
     {
         $institute_id=auth('institute')->id();
 //        dd($institute_id);
@@ -68,7 +68,7 @@ class SubjectController extends Controller
 
     // URI: /
     // SUM:
-    public function getsubjectShow($id): JsonResponse
+    public function getSubjectShow($id): JsonResponse
     {
         $subject= Topic::where('id', '=',$id)
             ->first();

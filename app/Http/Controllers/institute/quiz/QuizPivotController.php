@@ -97,7 +97,7 @@ class QuizPivotController extends Controller
 
     // URI: /
     // SUM:
-    public function deleteDestroy($id): JsonResponse
+    public function deleteQuizDestroy($id): JsonResponse
     {
         $pivot = QuizPivot::where('id','=',$id)
             ->delete();
