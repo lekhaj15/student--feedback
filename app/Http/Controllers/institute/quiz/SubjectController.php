@@ -16,24 +16,22 @@ class SubjectController extends Controller
     {
         $institute_id=auth('institute')->id();
 //        dd($institute_id);
-        $subject=Subject::where('institute_id','=', $institute_id )
+         $subject=Subject::where('institute_id','=', $institute_id )
 
             ->orderBy('id','DESC')
 
             ->paginate(15);
         return response()->json([
             'subject' => $subject,
-        ], Response::HTTP_OK);
+        ], jsonResponse::HTTP_OK);
     }
 
     // URI: /
     // SUM:
     public function postSubjectStore(Request $request): JsonResponse
     {
-
         $institute_id = auth('institute')->id();
-
-        $subject_name = $request->input('topic_name');
+       $subject_name = $request->input('topic_name');
         $category_id = $request->input('category_id');
         $subcategory_id = $request->input('subcategory_id');
 
@@ -47,12 +45,13 @@ class SubjectController extends Controller
             'institute_id'=>$institute_id,
 
         ]);
+
         return response()->json([
             'subject' => $subject,
         ], JsonResponse::HTTP_CREATED);
     }
 
-    public function getSubject(Request $request, $category_id, $subcategory_id): JsonResponse
+    public function getSubject(Request $request, int $category_id, int $subcategory_id): JsonResponse
     {
         $institute_id=auth('institute')->id();
 //        dd($institute_id);
