@@ -13,7 +13,7 @@ class Answer extends Model
 //    protected $table = '';
 
     protected $fillable = [
-        'id','institute_id','student_id','topic_id','question_id','answer_name', 'created_at', 'updated_at',
+        'id','institute_id','student_id','topic_id','question_id','answer_name', 'created_at', 'updated_at','option1','option2','option3','option4'
     ];
 
 //    protected $hidden = [

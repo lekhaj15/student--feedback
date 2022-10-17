@@ -89,6 +89,14 @@ class StudentFeedbackController extends Controller
                 'topic_id' => $topic_id,
                 'question_id' => $sc['question_id'],
                 'answer_name' => $sc['answer'],
+
+                'option1' => $sc['answer'],
+                'option2' => $sc['answer'],
+                'option3' => $sc['answer'],
+                'option4' => $sc['answer'],
+
+
+
             ]);
         }
 

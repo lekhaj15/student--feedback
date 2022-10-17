@@ -19,6 +19,12 @@ return new class extends Migration
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('question_id');$table->unsignedBigInteger('topic_id');
             $table->string('answer_name');
+            $table->string('option1')->nullable();
+            $table->string('option2')->nullable();
+            $table->string('option3')->nullable();
+            $table->string('option4')->nullable();
+
+
 
             $table->timestamps();
 

@@ -107,7 +107,7 @@ Route::group([
 
     Route::post('/question/store', [QuestionController::class, 'postQuestionStore']);
     Route::get('/question/index/{subcategory_id}', [QuestionController::class, 'getQuestionIndex']);
-//    Route::get('/question/index', [QuestionController::class, 'getQuestionIndex']);
+    Route::get('/question/index', [QuestionController::class, 'getQuestionIndex']);
     Route::get('/question/show/{id}', [QuestionController::class, 'getQuestionShow']);
     Route::delete('/question/delete/{id}', [QuestionController::class, 'deleteQuestionDestroy']);
     Route::patch('/question/update/{id}', [QuestionController::class, 'patchQuestionUpdate']);
@@ -139,7 +139,7 @@ Route::group([
     Route::get('/Quiz/show/{id}', [\App\Http\Controllers\institute\quiz\QuizController::class, 'getQuizShow']);
     Route::patch('Quiz/update/{id}', [\App\Http\Controllers\institute\quiz\QuizController::class, 'patchQuizUpdate']);
     Route::delete('Quiz/delete/{id}', [\App\Http\Controllers\institute\quiz\QuizController::class, 'deleteQuizDestroy']);
-    Route::post('Quiz', [\App\Http\Controllers\institute\quiz\QuizController::class, 'postStore']);
+    Route::post('Quiz/store', [\App\Http\Controllers\institute\quiz\QuizController::class, 'postQuizStore']);
 
 
     Route::get('Quizpivot/index', [\App\Http\Controllers\institute\quiz\QuizPivotController::class, 'getQuizPivotIndex']);
@@ -149,8 +149,8 @@ Route::group([
     Route::post('Quizpivot/store', [\App\Http\Controllers\institute\quiz\QuizPivotController::class, 'postStore']);
 
     Route::get('subject/index', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubjectIndex']);
-    Route::post('subject/show/{id}', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'postSubjectStore']);
-    Route::get('subject', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubject']);
+    Route::post('subject/store', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'postSubjectStore']);
+    Route::get('/subject', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubject']);
     Route::get('subject/show/{id}', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubjectShow']);
     Route::patch('subject/uodate/{id}', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'patchsubjectUpdate']);
 
@@ -163,5 +163,7 @@ Route::group([
     Route::get('Quizanswer', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'getShow']);
     Route::get('Quizanswer', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'getEdit']);
 
+
+    Route::get('/question/report/{subcategory_id}', [QuestionController::class, 'getQuestion']);
 });
 

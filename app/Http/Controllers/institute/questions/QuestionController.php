@@ -153,6 +153,53 @@ class QuestionController extends Controller
         ], JsonResponse::HTTP_ACCEPTED);
     }
 
+    public function getQuestion(Request $request,int $subcategory_id): JsonResponse
+    {
+
+        $institute_id=auth('institute')->id();
+        $subcategory=GradeSubCategory::where('id',$subcategory_id)->first();
+
+//        $question = DB::table('answers')
+//            ->select('question_id')
+////                ->where('question_id',1)
+//            ->where('subcategory_id',$subcategory_id)
+//            ->get();
+
+        $question = DB::table('answers')
+                ->select('answers.id','questions.question_name',
+                    DB::raw("count(answers.option1) as excellent_count"),
+                    DB::raw("count(answers.option2) as good_count") ,
+                    DB::raw("count(answers.option3) as avg_count"),
+                    DB::raw("count(answers.option4) as poor_count"))
+            ->leftJoin('questions', 'answers.question_id', '=', 'questions.id')
+
+            ->where('answers.question_id',1)
+//                ->where('subcategory_id',$subcategory_id)
+//                ->groupBy('id')
+                ->where('answers.option1','excellent')
+            ->orwhere('answers.option2','good')
+            ->orwhere('answers.option3','average')
+            ->orwhere('answers.option4','poor')
+            ->groupBy('answers.id')
+                ->get();
+//        foreach ($question as $quest){
+//
+//            $question = DB::table('answers')
+//                ->select('id',DB::raw("count(answer_name) as count"))
+//                ->where('question_id',$quest->question_id)
+//                ->where('subcategory_id',$subcategory_id)
+//                ->groupBy('id')
+//                ->first();
+//
+//        }
+
+        return response()->json([
+            'question' => $question,
+        ], Response::HTTP_OK);
+    }
+
+
+
     // URI: /
     // SUM:
     public function deleteQuestionDestroy($id)

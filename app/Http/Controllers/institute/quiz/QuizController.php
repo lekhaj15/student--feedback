@@ -43,7 +43,7 @@ class QuizController extends Controller
 
     // URI: /
     // SUM:
-    public function postStore(Request $request): JsonResponse
+    public function postQuizStore(Request $request): JsonResponse
     {
         $institute_id = auth('institute')->id();
 
