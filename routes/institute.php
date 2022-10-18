@@ -16,6 +16,10 @@ use App\Http\Controllers\institute\questions\QuestionPivotController;
 use App\Http\Controllers\institute\questions\StaffQuestionsController;
 use App\Http\Controllers\institute\questions\StaffQuestionsPivotController;
 use App\Http\Controllers\institute\questions\TopicController;
+use App\Http\Controllers\institute\quiz\QuizAnswerController;
+use App\Http\Controllers\institute\quiz\QuizController;
+use App\Http\Controllers\institute\quiz\QuizPivotController;
+use App\Http\Controllers\institute\quiz\SubjectController;
 use App\Http\Controllers\institute\Staff\InstituteStaffController;
 use App\Http\Controllers\institute\Student\InstituteStudentController;
 use App\Http\Controllers\institute\SubCategory\InstituteSubCategoryController;
@@ -139,29 +143,29 @@ Route::group([
     Route::get('/Quiz/show/{id}', [\App\Http\Controllers\institute\quiz\QuizController::class, 'getQuizShow']);
     Route::patch('Quiz/update/{id}', [\App\Http\Controllers\institute\quiz\QuizController::class, 'patchQuizUpdate']);
     Route::delete('Quiz/delete/{id}', [\App\Http\Controllers\institute\quiz\QuizController::class, 'deleteQuizDestroy']);
-    Route::post('Quiz/store', [\App\Http\Controllers\institute\quiz\QuizController::class, 'postQuizStore']);
+    Route::post('Quiz', [\App\Http\Controllers\institute\quiz\QuizController::class, 'postStore']);
 
 
-    Route::get('Quizpivot/index', [\App\Http\Controllers\institute\quiz\QuizPivotController::class, 'getQuizPivotIndex']);
-    Route::get('Quizpivot/show/{id}', [\App\Http\Controllers\institute\quiz\QuizPivotController::class, 'getQuizPivotShow']);
-    Route::patch('Quizpivot/update/{id}', [\App\Http\Controllers\institute\quiz\QuizPivotController::class, 'patchQuizPivotUpdate']);
-    Route::delete('Quizpivot/delete/{id}', [\App\Http\Controllers\institute\quiz\QuizPivotController::class, 'deleteQuizDestroy']);
-    Route::post('Quizpivot/store', [\App\Http\Controllers\institute\quiz\QuizPivotController::class, 'postStore']);
+    Route::get('Quizpivot/index', [QuizPivotController::class, 'getQuizPivotIndex']);
+    Route::get('Quizpivot/show/{id}', [QuizPivotController::class, 'getQuizPivotShow']);
+    Route::patch('Quizpivot/update/{id}', [QuizPivotController::class, 'patchQuizPivotUpdate']);
+    Route::delete('Quizpivot/delete/{id}', [QuizPivotController::class, 'deleteQuizDestroy']);
+    Route::post('Quizpivot/store', [QuizPivotController::class, 'postStore']);
 
     Route::get('subject/index', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubjectIndex']);
-    Route::post('subject/store', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'postSubjectStore']);
-    Route::get('/subject', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubject']);
+    Route::post('subject/show/{id}', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'postSubjectStore']);
+    Route::get('subject', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubject']);
     Route::get('subject/show/{id}', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'getSubjectShow']);
     Route::patch('subject/uodate/{id}', [\App\Http\Controllers\institute\quiz\SubjectController::class, 'patchsubjectUpdate']);
 
 
-    Route::get('Quizanswer/index', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'getQuizAnswerIndex']);
-    Route::get('Quizanswer', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'getQuizAnswer']);
-    Route::post('Quizanswer/store/{id}', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'postQuizAnswerStore']);
-    Route::patch('Quizanswer/update/{id}', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'patchQuizAnswerUpdate']);
-    Route::delete('Quizanswer/delete/{id}', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'deleteQuizAnswerDestroy']);
-    Route::get('Quizanswer', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'getShow']);
-    Route::get('Quizanswer', [\App\Http\Controllers\institute\quiz\QuizAnswerController::class, 'getEdit']);
+    Route::get('Quizanswer/index', [QuizAnswerController::class, 'getQuizAnswerIndex']);
+    Route::get('Quizanswer', [QuizAnswerController::class, 'getQuizAnswer']);
+    Route::post('Quizanswer/store/{id}', [QuizAnswerController::class, 'postQuizAnswerStore']);
+    Route::patch('Quizanswer/update/{id}', [QuizAnswerController::class, 'patchQuizAnswerUpdate']);
+    Route::delete('Quizanswer/delete/{id}', [QuizAnswerController::class, 'deleteQuizAnswerDestroy']);
+    Route::get('Quizanswer', [QuizAnswerController::class, 'getShow']);
+    Route::get('Quizanswer', [QuizAnswerController::class, 'getEdit']);
 
 
     Route::get('/question/report/{subcategory_id}', [QuestionController::class, 'getQuestion']);
