@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('student_information', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('institute_id');
-
             $table->integer('student_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
